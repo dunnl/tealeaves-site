@@ -1,0 +1,13 @@
+*~
+.stack-work/
+_cache/
+_site/
+log/
+result*
+*.swp
+*.swo
+*.log
+*.sass-cache/
+bulma-local/
+dist-newstyle/
+_site/

@@ -1,0 +1,13 @@
+# .gitignore instructions for tealeaves-site-gen nix derivation
+# The goal is to ignore everything except what we need to compile
+# This includes the LICENSE file as it gets used by cabal-install
+# during the install process, and the build fails without it
+*
+!app/
+!app/**
+!lib/
+!lib/**
+!test
+!test/**
+!*.cabal
+!LICENSE

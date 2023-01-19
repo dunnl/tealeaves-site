@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tealeaves | $title$</title>
+    $partial("templates/includes.html")$
+    $if(include-extra)$
+    $include-extra$
+    $endif$
+  </head>
+  <body onload="PR.prettyPrint()" id="body">
+    <section>
+      <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a style="text-decoration:none;">
+              <div class="navbar-item" href="/">
+                <img src="/images/logo_128.svg" width="32" height="32">
+                <h2 style="font-weight: normal; padding-left: 0.3em;" class="title is-4">
+                  Tealeaves
+                </h2>
+              </div>
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div id="navbarBasicExample" class="pl-6 navbar-menu">
+            <div class="navbar-start">
+              <a href="/" class="navbar-item">
+                Home
+              </a>
+              <a href="/docs/toc.html" class="navbar-item">
+                Documentation
+              </a>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  Examples
+                </a>
+                <div class="navbar-dropdown">
+                  <a href="/examples/STLC_Algebraic.html" class="navbar-item">
+                    STLC (Algebraic)
+                  </a>
+                  <a href="/examples/STLC_Kleisli.html" class="navbar-item">
+                    STLC (Kleisli)
+                  </a>
+                  <a class="navbar-item">
+                    System F
+                  </a>
+                  <a class="navbar-item">
+                    STLC + letrec
+                  </a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item">
+                    Report an issue
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+    <main id="main" class="section" role="main">
+      <div class="container is-fullhd">
+        $body$
+      </div>
+    </main>
+    <footer class="footer myfooter has-background-info-dark"> <!--00144c-->
+      <div class="container">
+        <div class="columns">
+          <div class="column is-half is-offset-half">
+            This site is built with <a href="https://github.com/jaspervdj/hakyll">hakyll</a>,
+            <a href="https://pandoc.org/">pandoc</a>, and <a href="https://nixos.org">nix</a>.
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

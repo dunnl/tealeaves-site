@@ -1,0 +1,170 @@
+$serif-font:   'Lora', 'Open Sans', sans-serif
+$header__font:   'Work Sans', 'sans-serif'
+$sans-font: "Open Sans"
+
+// Font families
+$body__font-size:   1rem
+
+body
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100vh
+    font-size:   $body__font-size
+    transition: a 2.0s ease 0
+    a
+      text-decoration: underline
+
+.navbar
+    a
+      text-decoration: none
+
+#header
+    margin-top: 2rem
+    text-transform: uppercase
+    font-family:      $header__font
+    a
+      transition: all 0.2s ease
+      text-decoration: none
+      font-size: 1.25rem
+
+#main
+  flex: 1;
+
+.figure-small
+  margin-top: 1em;
+  margin-bottom: 1em;
+  img
+    max-height: 300px;
+
+.figure
+  margin-top: 1em;
+  margin-bottom: 1em;
+  img
+    max-height: 400px;
+
+.figure-tall
+  margin-top: 1em;
+  margin-bottom: 1em;
+  img
+    max-height: 600px;
+
+.blog-content
+  max-width: 820px;
+  margin: auto;
+
+.blog-card
+  transition: box-shadow 0.5s ease-in-out;
+
+.blog-card:hover
+  box-shadow: 0 1em 1em -0.25em rgba(10, 10, 200, 0.1), 0 0px 0 2px rgba(100, 10, 100, 0.02);
+  color: black
+
+.post__header
+    padding-bottom: 2rem
+
+.post__ul
+    list-style-type: none
+    li
+        padding-bottom: 2rem
+
+.post__date
+    //color: gray
+
+.header__brand
+    font-weight: 700
+    font-size: 1.5rem
+    color: black
+
+.header__dot
+    font-weight: 700
+    color: black
+
+.header__io
+    font-weight: 700
+    text-transform: none
+    font-size: 1.2rem
+    color: red
+
+.social-media
+    list-style: none !important
+    a
+      color: black
+      font-size: 1.3rem
+      text-decoration: none
+      transition: all 0.2s ease
+      &:hover
+          color: #f00
+
+.myfooter
+    width: 100%
+    background-color: black
+    color: #ddd
+    a
+        transition: color linear 0.1s
+        color: #fff
+        text-decoration: underline
+        &:hover
+            color: #fff
+            text-decoration: underline
+
+.footer__contents
+    width: 100%
+    padding-left: 8em
+    padding-right: 8em
+    display: flex
+    flex-wrap: nowrap
+    flex-direction: column
+    align-items: stretch
+
+.footer__column
+    text-align:left
+    //padding: 0 4em
+    ul
+        padding-bottom: 1em
+    li
+        list-style-type: none
+        border-bottom: 1px solid #555
+        padding-bottom: .5em
+        padding-top: .5em
+        &:last-child
+            border: 0px
+            padding-bottom:
+
+.footer__title
+    text-transform: uppercase
+    font-family: $serif-font
+    font-weight: 700
+    font-size: 16px
+    text-align: center
+    color: #eee
+
+.footer__copyright
+    max-width: 100%
+    flex-basis: 100%
+    border-top: 1px solid
+    border-image-source: linear-gradient(45deg,#000b08,#555353,#000b08)
+    border-image-slice: 1
+    color: #aaa
+    font-size: 0.7rem
+    text-align: right
+
+.pgp__table
+  .pgp__name
+    font-weight: 700
+  .pgp__value
+    text-align: right
+
+.table
+    whitespace: nowrap
+
+$family-sans-serif: BlinkMacSystemFont, -apple-system, $sans-font, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+$text: #222 !default
+$title-weight: 700
+//$widescreen-enabled: false
+//$fullhd-enabled: false
+$body-size: 18px
+@import "../vendor/bulma/bulma.sass";
+
+.card
+  height: 100%;
