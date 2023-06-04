@@ -16,6 +16,7 @@
           ];
           nativeBuildInputs = [
             pkgs.cabal-install
+            pkgs.cabal2nix
           ];
         };
         site = pkgs.callPackage
