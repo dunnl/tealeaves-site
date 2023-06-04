@@ -9,7 +9,7 @@
           system = "x86_64-linux";
         };
         generator = pkgs.haskellPackages.callPackage
-          (import ./tealeaves-site-hakyll.nix) {};
+          (import ./tealeaves-site-generator.nix) {};
         generator-shell =  pkgs.haskellPackages.shellFor {
           packages = hpkgs: [
             generator
