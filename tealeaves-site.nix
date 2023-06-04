@@ -9,14 +9,14 @@ stdenv.mkDerivation {
     buildPhase = ''
       export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive";
       export LANG=en_US.UTF-8
-      tealeaves-site-hakyll build
+      tealeaves-site-generator build
       mkdir $out
       cp -r _site/* $out
       mkdir _site/coqdocs/
-      cp -r ${tealeaves.packages.x86_64-linux.default}/share/coq/${pkgs.coq.coq-version}/user-contrib/Tealeaves/html/ coqdocs/
+      cp -r ${tealeaves.packages.x86_64-linux.default}/share/coq/${pkgs.coq.coq-version}/user-contrib/Tealeaves/html/* _site/coqdocs/
     '';
     installPhase = ''
-      cp -r _site/ $out
+      cp -a _site/* $out
     '';
     meta = {
       description = "The contents of the Tealeaves project website";
