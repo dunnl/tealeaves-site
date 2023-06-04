@@ -1,0 +1,63 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1685758009,
+        "narHash": "sha256-IT4Z5WGhafrq+xbDTyuKrRPRQ1f+kVOtE+4JU1CHFeo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "eaf03591711b46d21abc7082a8ebee4681f9dbeb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1679224734,
+        "narHash": "sha256-1Ab3xY7Wgo1h1TNwRt6fp2XjV+KUo+hP1Bolh0KiDJs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "eac7da7b519a5aefe92c33c90b4450a24ebe0ab3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "tealeaves": "tealeaves"
+      }
+    },
+    "tealeaves": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1685920187,
+        "narHash": "sha256-hEUd48vTFkkLyYWyRTaPxM67dh4ijJ6IwAWW0xYv8B0=",
+        "owner": "dunnl",
+        "repo": "tealeaves",
+        "rev": "7ea5ad101ca601419dcd9d415deb3b49dd7834b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dunnl",
+        "ref": "new-flakes",
+        "repo": "tealeaves",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
