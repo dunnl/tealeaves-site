@@ -6,19 +6,23 @@ let
   callPackage = pkgs.haskellPackages.callPackage;
 in
 rec {
-  tealeaves-site-gen = callPackage (import ./tealeaves-site-gen.nix) {};
+  coq-tealeaves = (callPackage (import ../tealeaves/default.nix) {}).coq-tealeaves;
+  tealeaves-site-hakyll = callPackage (import ./tealeaves-site-hakyll.nix) {};
   tealeaves-site = stdenv.mkDerivation rec {
     name = "tealeaves-site";
     src = ./.;
     phases = "unpackPhase buildPhase";
     version = "0.1";
-    buildInputs = [ tealeaves-site-gen ];
+    buildInputs = [ coq-tealeaves tealeaves-site-hakyll ];
     buildPhase = ''
       export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive";
       export LANG=en_US.UTF-8
-      tealeaves-site-gen build
+      tealeaves-site-hakyll build
       mkdir $out
       cp -r _site/* $out
+      mkdir $out/coqdocs/
+      # Copy coqdoc-generated outputs to website output
+      cp ${coq-tealeaves}/share/coq/${pkgs.coq.coq-version}/coq/user-contrib/Tealeaves/html/* $out/coqdocs/
     '';
     meta = {
       description = "The contents of the Tealeaves project website";

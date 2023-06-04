@@ -2,7 +2,7 @@
 , hakyll-sass, lib, pandoc, pandoc-types, pkgs
 }:
 mkDerivation {
-  pname = "tealeaves-site-gen";
+  pname = "tealeaves-site-hakyll";
   version = "0.1.0.0";
   src = pkgs.nix-gitignore.gitignoreSourcePure ./.gitignore_nix ./.;
   isLibrary = true;
