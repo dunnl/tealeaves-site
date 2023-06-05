@@ -30,5 +30,9 @@
            generator-shell;
          devShells.x86_64-linux.generator =
            generator-shell;
+         apps.x86_64-linux.default = {
+           type = "app";
+           program = "${generator}/bin/tealeaves-site-generator";
          };
+       };
 }
