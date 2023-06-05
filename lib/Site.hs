@@ -37,6 +37,14 @@ site = hakyllWith conf $ do
         route   idRoute
         compile copyFileCompiler
 
+    match "coqdocs/**" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "examples/**" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match "css/*.css" $ do
         route   idRoute
         compile compressCssCompiler

@@ -10,11 +10,6 @@ stdenv.mkDerivation {
       export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive";
       export LANG=en_US.UTF-8
       tealeaves-site-generator build
-      mkdir $out
-      mkdir _site/coqdocs/
-      cp -r ${tealeaves}/share/coq/${pkgs.coq.coq-version}/user-contrib/Tealeaves/html/* _site/coqdocs/
-      mkdir _site/examples/
-      cp -r ${tealeaves-examples}/* _site/examples/
     '';
     installPhase = ''
       cp -a _site/* $out
