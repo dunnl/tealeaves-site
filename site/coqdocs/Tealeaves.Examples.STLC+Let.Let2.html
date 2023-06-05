@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="./indexpage.html"> Index </a>
+      <a href="./toc.html"> Table of Contents </a>
+    </span>
+</div>
+    <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="main">
+<h1 class="libtitle">Tealeaves.Examples.STLC+Let.Let2</h1>
+
+<div class="code">
+<span class="comment">(*|<br/>
+##############################<br/>
+Adding&nbsp;a&nbsp;letrec&nbsp;to&nbsp;untyped&nbsp;lambda&nbsp;calculus<br/>
+##############################<br/>
+<br/>
+..&nbsp;contents::&nbsp;Table&nbsp;of&nbsp;Contents<br/>
+&nbsp;&nbsp;&nbsp;:depth:&nbsp;2<br/>
+<br/>
+============================<br/>
+Imports&nbsp;and&nbsp;setup<br/>
+============================<br/>
+<br/>
+|*)</span><br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Tealeaves</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Functors.List</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Backends.LN.Atom</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Classes.EqDec_eq</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Classes.Traversable.Functor</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Classes.Kleisli.Traversable.Functor</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Categories.TypeFamilies</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Functors.Writer</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Multisorted.Classes.DTM</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">Setlike.Functor.Notations</span>.<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">Traversable.Functor.ToKleisli</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">Tealeaves.Classes.Monoid.Notations</span>.<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">Tealeaves.Data.Product.Notations</span>.<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">Tealeaves.Classes.Applicative.Notations</span>.<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">Multisorted.Classes.DTM.Notations</span>.<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">List.ListNotations</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Generalizable</span> <span class="id" title="keyword">Variables</span> <span class="id" title="var">F</span> <span class="id" title="var">G</span> <span class="id" title="var">A</span> <span class="id" title="var">B</span> <span class="id" title="var">C</span> <span class="id" title="var">ϕ</span>.<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+============================<br/>
+Language&nbsp;definition<br/>
+============================<br/>
+|*)</span><br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span> <span class="id" title="var">Unit_eq</span> : <span class="id" title="var">EqDec</span> <span class="id" title="var">unit</span> <span class="id" title="var">eq</span>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">change</span> (<span class="id" title="keyword">forall</span> <span class="id" title="var">x</span> <span class="id" title="var">y</span> : <span class="id" title="var">unit</span>, {<span class="id" title="var">x</span> = <span class="id" title="var">y</span>} + {<span class="id" title="var">x</span> &lt;&gt; <span class="id" title="var">y</span>}).<br/>
+&nbsp;&nbsp;<span class="id" title="var">decide</span> <span class="id" title="var">equality</span>.<br/>
+<span class="id" title="keyword">Defined</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span> <span class="id" title="var">Unit</span> : <span class="id" title="var">Index</span> := {| <span class="id" title="var">K</span> := <span class="id" title="var">unit</span> |}.<br/>
+
+<br/>
+<span class="id" title="keyword">Inductive</span> <span class="id" title="var">term</span> (<span class="id" title="var">v</span> : <span class="id" title="keyword">Type</span>) :=<br/>
+| <span class="id" title="var">tvar</span> : <span class="id" title="var">v</span> -&gt; <span class="id" title="var">term</span> <span class="id" title="var">v</span><br/>
+| <span class="id" title="var">app</span> : <span class="id" title="var">term</span> <span class="id" title="var">v</span> -&gt; <span class="id" title="var">term</span> <span class="id" title="var">v</span> -&gt; <span class="id" title="var">term</span> <span class="id" title="var">v</span><br/>
+| <span class="id" title="var">lam</span> : <span class="id" title="var">atom</span> -&gt; <span class="id" title="var">term</span> <span class="id" title="var">v</span> -&gt; <span class="id" title="var">term</span> <span class="id" title="var">v</span><br/>
+| <span class="id" title="var">letin</span> : <span class="id" title="var">atom</span> * <span class="id" title="var">term</span> <span class="id" title="var">v</span> -&gt; <span class="id" title="var">term</span> <span class="id" title="var">v</span> -&gt; <span class="id" title="var">term</span> <span class="id" title="var">v</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <span class="id" title="var">T</span> (<span class="id" title="var">_</span> : <span class="id" title="var">unit</span>) (<span class="id" title="var">v</span> : <span class="id" title="keyword">Type</span>) : <span class="id" title="keyword">Type</span> := @<span class="id" title="var">term</span> <span class="id" title="var">v</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <span class="id" title="var">induction_principle</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">var</span> : <span class="id" title="keyword">Type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">P</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span> -&gt; <span class="id" title="keyword">Prop</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">case_var</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">v</span> : <span class="id" title="var">var</span>, <span class="id" title="var">P</span> (@<span class="id" title="var">tvar</span> <span class="id" title="var">var</span> <span class="id" title="var">v</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">case_app</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">t1</span> <span class="id" title="var">t2</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>), <span class="id" title="var">P</span> <span class="id" title="var">t1</span> -&gt; <span class="id" title="var">P</span> <span class="id" title="var">t2</span> -&gt; <span class="id" title="var">P</span> (<span class="id" title="var">app</span> <span class="id" title="var">var</span> <span class="id" title="var">t1</span> <span class="id" title="var">t2</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">case_lam</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">a</span> : <span class="id" title="var">atom</span>) (<span class="id" title="var">t</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>), <span class="id" title="var">P</span> <span class="id" title="var">t</span> -&gt; <span class="id" title="var">P</span> (<span class="id" title="var">lam</span> <span class="id" title="var">var</span> <span class="id" title="var">a</span> <span class="id" title="var">t</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">case_let</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">forall</span> (<span class="id" title="var">binders</span> : (<span class="id" title="var">atom</span> * <span class="id" title="var">term</span> <span class="id" title="var">var</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">IHrec</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">bound</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>), <span class="id" title="var">bound</span> ∈ <span class="id" title="var">binders</span> -&gt; <span class="id" title="var">P</span> <span class="id" title="var">bound</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">t</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">P</span> <span class="id" title="var">t</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">P</span> (<span class="id" title="var">letin</span> <span class="id" title="var">var</span> <span class="id" title="var">binders</span> <span class="id" title="var">t</span>)).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <span class="id" title="var">term_mind</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">t</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>), <span class="id" title="var">P</span> <span class="id" title="var">t</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">refine</span>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fix</span> <span class="id" title="var">F</span> (<span class="id" title="var">t</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>) : <span class="id" title="var">P</span> <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">t</span> <span class="id" title="keyword">return</span> (<span class="id" title="var">P</span> <span class="id" title="var">t</span>) <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">tvar</span> <span class="id" title="var">_</span> <span class="id" title="var">y</span> =&gt; <span class="id" title="var">case_var</span> <span class="id" title="var">y</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">app</span> <span class="id" title="var">_</span> <span class="id" title="var">t1</span> <span class="id" title="var">t2</span> =&gt; <span class="id" title="var">case_app</span> <span class="id" title="var">t1</span> <span class="id" title="var">t2</span> (<span class="id" title="var">F</span> <span class="id" title="var">t1</span>) (<span class="id" title="var">F</span> <span class="id" title="var">t2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">lam</span> <span class="id" title="var">_</span> <span class="id" title="var">nm</span> <span class="id" title="var">body</span> =&gt; <span class="id" title="var">case_lam</span> <span class="id" title="var">nm</span> <span class="id" title="var">body</span> (<span class="id" title="var">F</span> <span class="id" title="var">body</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">letin</span> <span class="id" title="var">_</span> (<span class="id" title="var">nm</span>, <span class="id" title="var">def</span>) <span class="id" title="var">body</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id" title="var">case_let</span> (<span class="id" title="var">nm</span>, <span class="id" title="var">def</span>) (<span class="id" title="keyword">fun</span> (<span class="id" title="var">bound</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">elem</span> : (<span class="id" title="var">bound</span> ∈ (<span class="id" title="var">nm</span>, <span class="id" title="var">def</span>)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="var">_</span> (<span class="id" title="var">F</span> <span class="id" title="var">def</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">body</span> (<span class="id" title="var">F</span> <span class="id" title="var">body</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">now</span> <span class="id" title="tactic">inversion</span> <span class="id" title="var">elem</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <span class="id" title="var">induction_principle</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <span class="id" title="var">induction_principle</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">var</span> : <span class="id" title="keyword">Type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">P</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span> -&gt; <span class="id" title="keyword">Prop</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">case_var</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">v</span> : <span class="id" title="var">var</span>, <span class="id" title="var">P</span> (@<span class="id" title="var">tvar</span> <span class="id" title="var">var</span> <span class="id" title="var">v</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">case_app</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">t1</span> <span class="id" title="var">t2</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>), <span class="id" title="var">P</span> <span class="id" title="var">t1</span> -&gt; <span class="id" title="var">P</span> <span class="id" title="var">t2</span> -&gt; <span class="id" title="var">P</span> (<span class="id" title="var">app</span> <span class="id" title="var">var</span> <span class="id" title="var">t1</span> <span class="id" title="var">t2</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">case_lam</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">a</span> : <span class="id" title="var">atom</span>) (<span class="id" title="var">t</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>), <span class="id" title="var">P</span> <span class="id" title="var">t</span> -&gt; <span class="id" title="var">P</span> (<span class="id" title="var">lam</span> <span class="id" title="var">var</span> <span class="id" title="var">a</span> <span class="id" title="var">t</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">case_let</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">forall</span> (<span class="id" title="var">a</span> : <span class="id" title="var">atom</span>) (<span class="id" title="var">def</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>) (<span class="id" title="var">body</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">IHdef</span> : <span class="id" title="var">P</span> <span class="id" title="var">def</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">IHbody</span> : <span class="id" title="var">P</span> <span class="id" title="var">body</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">P</span> (<span class="id" title="var">letin</span> <span class="id" title="var">_</span> (<span class="id" title="var">a</span>, <span class="id" title="var">def</span>) <span class="id" title="var">body</span>)).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <span class="id" title="var">term_mind2</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">t</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>), <span class="id" title="var">P</span> <span class="id" title="var">t</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">refine</span>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fix</span> <span class="id" title="var">F</span> (<span class="id" title="var">t</span> : <span class="id" title="var">term</span> <span class="id" title="var">var</span>) : <span class="id" title="var">P</span> <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">t</span> <span class="id" title="keyword">return</span> (<span class="id" title="var">P</span> <span class="id" title="var">t</span>) <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">tvar</span> <span class="id" title="var">_</span> <span class="id" title="var">y</span> =&gt; <span class="id" title="var">case_var</span> <span class="id" title="var">y</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">app</span> <span class="id" title="var">_</span> <span class="id" title="var">t1</span> <span class="id" title="var">t2</span> =&gt; <span class="id" title="var">case_app</span> <span class="id" title="var">t1</span> <span class="id" title="var">t2</span> (<span class="id" title="var">F</span> <span class="id" title="var">t1</span>) (<span class="id" title="var">F</span> <span class="id" title="var">t2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">lam</span> <span class="id" title="var">_</span> <span class="id" title="var">nm</span> <span class="id" title="var">body</span> =&gt; <span class="id" title="var">case_lam</span> <span class="id" title="var">nm</span> <span class="id" title="var">body</span> (<span class="id" title="var">F</span> <span class="id" title="var">body</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">letin</span> <span class="id" title="var">_</span> (<span class="id" title="var">nm</span>, <span class="id" title="var">def</span>) <span class="id" title="var">body</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id" title="var">case_let</span> <span class="id" title="var">nm</span> <span class="id" title="var">def</span> <span class="id" title="var">body</span> (<span class="id" title="var">F</span> <span class="id" title="var">def</span>) (<span class="id" title="var">F</span> <span class="id" title="var">body</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <span class="id" title="var">induction_principle</span>.<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+========================================<br/>
+Definition&nbsp;of&nbsp;`binddt`&nbsp;and&nbsp;`return`<br/>
+========================================<br/>
+|*)</span><br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span>: <span class="id" title="var">MReturn</span> <span class="id" title="var">T</span> := <span class="id" title="keyword">fun</span> <span class="id" title="var">A</span> <span class="id" title="var">k</span> =&gt; @<span class="id" title="var">tvar</span> <span class="id" title="var">A</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Fixpoint</span> <span class="id" title="var">binddt_term</span> (<span class="id" title="var">G</span> : <span class="id" title="keyword">Type</span> -&gt; <span class="id" title="keyword">Type</span>) `{<span class="id" title="var">Fmap</span> <span class="id" title="var">G</span>} `{<span class="id" title="var">Pure</span> <span class="id" title="var">G</span>} `{<span class="id" title="var">Mult</span> <span class="id" title="var">G</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id" title="var">v1</span> <span class="id" title="var">v2</span> : <span class="id" title="keyword">Type</span>} (<span class="id" title="var">f</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">list</span> <span class="id" title="var">atom</span> * <span class="id" title="var">v1</span> -&gt; <span class="id" title="var">G</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">v2</span>)) (<span class="id" title="var">t</span> : <span class="id" title="var">term</span> <span class="id" title="var">v1</span>) : <span class="id" title="var">G</span> (<span class="id" title="var">term</span> <span class="id" title="var">v2</span>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">t</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">tvar</span> <span class="id" title="var">_</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">tt</span> (<span class="id" title="var">nil</span>, <span class="id" title="var">v</span>)<br/>
+&nbsp;&nbsp;| <span class="id" title="var">app</span> <span class="id" title="var">_</span> <span class="id" title="var">t1</span> <span class="id" title="var">t2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">pure</span> <span class="id" title="var">G</span> (@<span class="id" title="var">app</span> <span class="id" title="var">v2</span>) &lt;⋆&gt; <span class="id" title="var">binddt_term</span> <span class="id" title="var">G</span> <span class="id" title="var">f</span> <span class="id" title="var">t1</span> &lt;⋆&gt; <span class="id" title="var">binddt_term</span> <span class="id" title="var">G</span> <span class="id" title="var">f</span> <span class="id" title="var">t2</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">lam</span> <span class="id" title="var">_</span> <span class="id" title="var">name</span> <span class="id" title="var">body</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">pure</span> <span class="id" title="var">G</span> (@<span class="id" title="var">lam</span> <span class="id" title="var">v2</span> <span class="id" title="var">name</span>) &lt;⋆&gt; <span class="id" title="var">binddt_term</span> <span class="id" title="var">G</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">k</span> ∘ <span class="id" title="var">incr</span> [<span class="id" title="var">name</span>]) <span class="id" title="var">body</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">letin</span> <span class="id" title="var">_</span> <span class="id" title="var">p</span> <span class="id" title="var">body</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">pure</span> <span class="id" title="var">G</span> (@<span class="id" title="var">letin</span> <span class="id" title="var">v2</span>) &lt;⋆&gt; <span class="id" title="var">traverse</span> (<span class="id" title="var">atom</span> ×) <span class="id" title="var">G</span> (<span class="id" title="var">binddt_term</span> <span class="id" title="var">G</span> <span class="id" title="var">f</span>) <span class="id" title="var">p</span> &lt;⋆&gt; <span class="id" title="var">binddt_term</span> <span class="id" title="var">G</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">k</span> ∘ <span class="id" title="var">incr</span> [<span class="id" title="var">fst</span> <span class="id" title="var">p</span>]) <span class="id" title="var">body</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span> <span class="id" title="var">MBind_term</span> : <span class="id" title="var">MBind</span> (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) <span class="id" title="var">T</span> <span class="id" title="var">term</span> := @<span class="id" title="var">binddt_term</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span> <span class="id" title="var">MBind_T</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">MBind</span> (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) <span class="id" title="var">T</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">ltac</span>:(<span class="id" title="tactic">intros</span> []; <span class="id" title="var">typeclasses</span> <span class="id" title="tactic">eauto</span>).<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+Helpers<br/>
+|*)</span><br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <span class="id" title="var">helpers</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">Applicative</span> <span class="id" title="var">F</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">Applicative</span> <span class="id" title="var">G</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id" title="var">v1</span> <span class="id" title="var">v2</span> <span class="id" title="var">v3</span> : <span class="id" title="keyword">Type</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">f</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">nat</span> * <span class="id" title="var">v1</span> -&gt; <span class="id" title="var">F</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">v2</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">g</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">nat</span> * <span class="id" title="var">v2</span> -&gt; <span class="id" title="var">G</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">v3</span>)).<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <span class="id" title="var">helpers</span>.<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+========================================<br/>
+The&nbsp;Kleisli&nbsp;axioms&nbsp;of&nbsp;DTMs<br/>
+========================================<br/>
+|*)</span><br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <span class="id" title="var">laws</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac</span> <span class="id" title="var">rewrite_with_bind_hyp</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">H</span> : <span class="id" title="keyword">context</span>[<span class="id" title="var">mbinddt</span>] |- <span class="id" title="var">_</span> =&gt; <span class="id" title="tactic">rewrite</span> <span class="id" title="var">H</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac</span> <span class="id" title="var">induction_on_term</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">t</span> : <span class="id" title="var">term</span> ?<span class="id" title="var">v</span> |- <span class="id" title="var">_</span> =&gt; <span class="id" title="tactic">induction</span> <span class="id" title="var">t</span> <span class="id" title="keyword">using</span> <span class="id" title="var">term_mind2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac</span> <span class="id" title="var">dtm_setup</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">intros</span>; <span class="id" title="var">ext</span> <span class="id" title="var">t</span>; <span class="id" title="tactic">unfold</span> <span class="id" title="var">id</span>; <span class="id" title="var">induction_on_term</span>; <span class="id" title="var">cbn</span>.<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+-----------------------------<br/>
+Law&nbsp;1<br/>
+-----------------------------<br/>
+|*)</span><br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <span class="id" title="var">mbinddt_comp_mret_term</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">forall</span> (<span class="id" title="var">F</span> : <span class="id" title="keyword">Type</span> -&gt; <span class="id" title="keyword">Type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">Applicative</span> <span class="id" title="var">F</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(<span class="id" title="var">f</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">list</span> <span class="id" title="var">atom</span> * <span class="id" title="var">A</span> -&gt; <span class="id" title="var">F</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">B</span>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">mbinddt</span> <span class="id" title="var">term</span> <span class="id" title="var">F</span> <span class="id" title="var">f</span> ∘ <span class="id" title="var">mret</span> <span class="id" title="var">T</span> <span class="id" title="var">tt</span> = <span class="id" title="var">f</span> <span class="id" title="var">tt</span> ∘ <span class="id" title="var">pair</span> <span class="id" title="var">nil</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Corollary</span> <span class="id" title="var">mbinddt_comp_mret_T</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">forall</span> <span class="id" title="var">k</span> <span class="id" title="var">F</span> `{<span class="id" title="var">Applicative</span> <span class="id" title="var">F</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(<span class="id" title="var">f</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">list</span> <span class="id" title="var">atom</span> * <span class="id" title="var">A</span> -&gt; <span class="id" title="var">F</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">B</span>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">mbinddt</span> (<span class="id" title="var">W</span> := (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>)) (<span class="id" title="var">T</span> := <span class="id" title="var">T</span>) (<span class="id" title="var">T</span> <span class="id" title="var">k</span>) <span class="id" title="var">F</span> <span class="id" title="var">f</span> ∘ <span class="id" title="var">mret</span> <span class="id" title="var">T</span> <span class="id" title="var">k</span> = (<span class="id" title="keyword">fun</span> <span class="id" title="var">a</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">k</span> (Ƶ, <span class="id" title="var">a</span>)).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">intros</span> []. <span class="id" title="tactic">apply</span> <span class="id" title="var">mbinddt_comp_mret_term</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+-----------------------------<br/>
+Law&nbsp;2<br/>
+-----------------------------<br/>
+|*)</span><br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Generalizable Variable</span> <span class="id" title="var">M</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <span class="id" title="var">dtm2_helper</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">x</span> : <span class="id" title="var">atom</span>) (<span class="id" title="var">A</span> : <span class="id" title="keyword">Type</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> : <span class="id" title="var">unit</span> =&gt; <span class="id" title="var">mret</span> <span class="id" title="var">T</span> <span class="id" title="var">k</span> ∘ <span class="id" title="var">extract</span> (<span class="id" title="var">A</span>:=<span class="id" title="var">A</span>) (<span class="id" title="var">prod</span> (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>)) ∘ <span class="id" title="var">incr</span> [<span class="id" title="var">x</span>]) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> : <span class="id" title="var">unit</span> =&gt; <span class="id" title="var">mret</span> <span class="id" title="var">T</span> <span class="id" title="var">k</span> ∘ <span class="id" title="var">extract</span> (<span class="id" title="var">prod</span> (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>))).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">intros</span>. <span class="id" title="var">ext</span> <span class="id" title="var">k</span>. <span class="id" title="var">reassociate</span> -&gt;. <span class="id" title="var">now</span> <span class="id" title="tactic">rewrite</span> (<span class="id" title="var">extract_incr</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <span class="id" title="var">mbinddt_mret_term</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">A</span> : <span class="id" title="keyword">Type</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">mbinddt</span> <span class="id" title="var">term</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">A</span> =&gt; <span class="id" title="var">A</span>) (<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> =&gt; <span class="id" title="var">mret</span> <span class="id" title="var">T</span> <span class="id" title="var">k</span> ∘ <span class="id" title="var">extract</span> ((<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) ×)) = @<span class="id" title="var">id</span> (<span class="id" title="var">term</span> <span class="id" title="var">A</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">intros</span>. <span class="id" title="var">ext</span> <span class="id" title="var">t</span>. <span class="id" title="tactic">unfold</span> <span class="id" title="var">id</span>. <span class="id" title="tactic">induction</span> <span class="id" title="var">t</span> <span class="id" title="keyword">using</span> <span class="id" title="var">term_mind2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">cbn</span>. <span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">cbn</span>. <span class="id" title="var">fequal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">cbn</span>. <span class="id" title="var">fequal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="tactic">rewrite</span> <span class="id" title="var">dtm2_helper</span>. <span class="id" title="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">cbn</span>. <span class="id" title="var">fequal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="var">fequal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="id" title="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="tactic">rewrite</span> <span class="id" title="var">dtm2_helper</span>. <span class="id" title="tactic">auto</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Corollary</span> <span class="id" title="var">mbinddt_mret_T</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">forall</span> <span class="id" title="var">k</span> <span class="id" title="var">A</span>, <span class="id" title="var">mbinddt</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span>) (<span class="id" title="keyword">fun</span> <span class="id" title="var">A</span> =&gt; <span class="id" title="var">A</span>) (<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> =&gt; <span class="id" title="var">mret</span> <span class="id" title="var">T</span> <span class="id" title="var">k</span> ∘ <span class="id" title="var">extract</span> ((<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) ×)) = @<span class="id" title="var">id</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">A</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">intros</span> [] <span class="id" title="var">A</span>. <span class="id" title="tactic">apply</span> <span class="id" title="var">mbinddt_mret_term</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac</span> <span class="id" title="var">solve_dtm2_case</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">fequal</span>; <span class="id" title="tactic">try</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">dtm2_helper</span>; <span class="id" title="tactic">auto</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <span class="id" title="var">mbinddt_mret_term_automated</span> : <span class="id" title="keyword">forall</span> (<span class="id" title="var">A</span> : <span class="id" title="keyword">Type</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">mbinddt</span> <span class="id" title="var">term</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">A</span> =&gt; <span class="id" title="var">A</span>) (<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> =&gt; <span class="id" title="var">mret</span> <span class="id" title="var">T</span> <span class="id" title="var">k</span> ∘ <span class="id" title="var">extract</span> ((<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) ×)) = @<span class="id" title="var">id</span> (<span class="id" title="var">term</span> <span class="id" title="var">A</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">dtm_setup</span>; <span class="id" title="var">solve_dtm2_case</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">fequal</span>; <span class="id" title="tactic">auto</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+-----------------------------<br/>
+Law&nbsp;3<br/>
+-----------------------------<br/>
+|*)</span><br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac</span> <span class="id" title="var">dtm3_lhs_step</span> <span class="id" title="var">G1</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>; <span class="comment">(*&nbsp;Bring&nbsp;LHS&nbsp;&lt;&lt;fmap&gt;&gt;&nbsp;up&nbsp;to&nbsp;the&nbsp;constructor&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">G1</span>). <span class="comment">(*&nbsp;Fuse&nbsp;&lt;&lt;fmap&gt;&gt;&nbsp;and&nbsp;the&nbsp;&lt;&lt;pure&nbsp;(constructor)&gt;&gt;&nbsp;*)</span><br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac</span> <span class="id" title="var">dtm3_rhs_step</span> <span class="id" title="var">G2</span> <span class="id" title="var">G1</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">rewrite_strat</span> <span class="id" title="var">innermost</span> (<span class="id" title="var">terms</span> (<span class="id" title="var">ap_compose2</span> <span class="id" title="var">G2</span> <span class="id" title="var">G1</span>)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">G1</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">ap_fmap</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">G1</span>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <span class="id" title="var">mbinddt_mbinddt_term</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">forall</span> (<span class="id" title="var">F</span> : <span class="id" title="keyword">Type</span> -&gt; <span class="id" title="keyword">Type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">G</span> : <span class="id" title="keyword">Type</span> -&gt; <span class="id" title="keyword">Type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">Applicative</span> <span class="id" title="var">F</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">Applicative</span> <span class="id" title="var">G</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(<span class="id" title="var">g</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">list</span> <span class="id" title="var">atom</span> * <span class="id" title="var">B</span> -&gt; <span class="id" title="var">G</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">C</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(<span class="id" title="var">f</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">list</span> <span class="id" title="var">atom</span> * <span class="id" title="var">A</span> -&gt; <span class="id" title="var">F</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">B</span>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">fmap</span> <span class="id" title="var">F</span> (<span class="id" title="var">mbinddt</span> <span class="id" title="var">term</span> <span class="id" title="var">G</span> <span class="id" title="var">g</span>) ∘ <span class="id" title="var">mbinddt</span> <span class="id" title="var">term</span> <span class="id" title="var">F</span> <span class="id" title="var">f</span>) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">mbinddt</span> <span class="id" title="var">term</span> (<span class="id" title="var">F</span> ∘ <span class="id" title="var">G</span>) (<span class="id" title="var">compose_dtm</span> (<span class="id" title="var">T</span> := <span class="id" title="var">T</span>) <span class="id" title="var">g</span> <span class="id" title="var">f</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">intros</span>. <span class="id" title="var">ext</span> <span class="id" title="var">t</span>. <span class="id" title="tactic">unfold</span> <span class="id" title="var">compose</span> <span class="id" title="tactic">at</span> 1.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">generalize</span> <span class="id" title="tactic">dependent</span> <span class="id" title="var">g</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">generalize</span> <span class="id" title="tactic">dependent</span> <span class="id" title="var">f</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">induction</span> <span class="id" title="var">t</span> <span class="id" title="keyword">using</span> <span class="id" title="var">term_mind2</span>; <span class="id" title="tactic">intros</span> <span class="id" title="var">f</span> <span class="id" title="var">g</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">cbn</span>. <span class="id" title="tactic">change</span> [] <span class="id" title="keyword">with</span> (Ƶ : <span class="id" title="var">list</span> <span class="id" title="var">atom</span>). <span class="id" title="var">now</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">incr_zero</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">cbn</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;left&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">do</span> 2 <span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;IH&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;constructor&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">unfold_ops</span> @<span class="id" title="var">Pure_compose</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;first&nbsp;argument&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rewrite_strat</span> <span class="id" title="var">innermost</span> (<span class="id" title="var">terms</span> (<span class="id" title="var">ap_compose2</span> <span class="id" title="var">G</span> <span class="id" title="var">F</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">ap_fmap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;outer&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rewrite_strat</span> <span class="id" title="var">innermost</span> (<span class="id" title="var">terms</span> (<span class="id" title="var">ap_compose2</span> <span class="id" title="var">G</span> <span class="id" title="var">F</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">ap_fmap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Done&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">cbn</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;left&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;IH&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">compose_dtm_incr</span> (<span class="id" title="var">ix</span> := <span class="id" title="var">Unit</span>) (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) <span class="id" title="var">T</span> <span class="id" title="var">g</span> <span class="id" title="var">f</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;constructor&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">unfold_ops</span> @<span class="id" title="var">Pure_compose</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;first&nbsp;argument&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rewrite_strat</span> <span class="id" title="var">innermost</span> (<span class="id" title="var">terms</span> (<span class="id" title="var">ap_compose2</span> <span class="id" title="var">G</span> <span class="id" title="var">F</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">ap_fmap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Done&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">cbn</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;left&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">do</span> 2 <span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;left&nbsp;side,&nbsp;first&nbsp;arg&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">ap_fmap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;IH&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">compose_dtm_incr</span> (<span class="id" title="var">ix</span> := <span class="id" title="var">Unit</span>) (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) <span class="id" title="var">T</span> <span class="id" title="var">g</span> <span class="id" title="var">f</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;constructor&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">unfold_ops</span> @<span class="id" title="var">Pure_compose</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;first&nbsp;argument&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">change</span> (<span class="id" title="var">fmap</span> (<span class="id" title="var">F</span> ∘ <span class="id" title="var">G</span>) ?<span class="id" title="var">f</span>) <span class="id" title="keyword">with</span> (<span class="id" title="var">fmap</span> <span class="id" title="var">F</span> (<span class="id" title="var">fmap</span> <span class="id" title="var">G</span> <span class="id" title="var">f</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rewrite_strat</span> <span class="id" title="var">innermost</span> (<span class="id" title="var">terms</span> (<span class="id" title="var">ap_compose2</span> <span class="id" title="var">G</span> <span class="id" title="var">F</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">ap_fmap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">ap_fmap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side,&nbsp;second&nbsp;argument&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rewrite_strat</span> <span class="id" title="var">innermost</span> (<span class="id" title="var">terms</span> (<span class="id" title="var">ap_compose2</span> <span class="id" title="var">G</span> <span class="id" title="var">F</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">ap_fmap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">fmap_ap</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">app_pure_natural</span> <span class="id" title="var">F</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Done&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+------------------------<br/>
+Law&nbsp;4<br/>
+------------------------<br/>
+<br/>
+|*)</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Section</span> <span class="id" title="var">law4</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Context</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">F</span> : <span class="id" title="keyword">Type</span> -&gt; <span class="id" title="keyword">Type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">G</span> : <span class="id" title="keyword">Type</span> -&gt; <span class="id" title="keyword">Type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">ApplicativeMorphism</span> <span class="id" title="var">F</span> <span class="id" title="var">G</span> <span class="id" title="var">ϕ</span>}.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Ltac</span> <span class="id" title="var">invert_applicative</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">hyp</span> : <span class="id" title="var">ApplicativeMorphism</span> <span class="id" title="var">F</span> <span class="id" title="var">G</span> <span class="id" title="var">ϕ</span> |- <span class="id" title="var">_</span> =&gt; <span class="id" title="tactic">inversion</span> <span class="id" title="var">hyp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Set</span> <span class="id" title="var">Keyed</span> <span class="id" title="var">Unification</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <span class="id" title="var">mbinddt_morphism_term</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">forall</span> `(<span class="id" title="var">f</span> : <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span>, <span class="id" title="var">list</span> <span class="id" title="var">atom</span> * <span class="id" title="var">A</span> -&gt; <span class="id" title="var">F</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">B</span>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">ϕ</span> (<span class="id" title="var">term</span> <span class="id" title="var">B</span>) ∘ <span class="id" title="var">mbinddt</span> <span class="id" title="var">term</span> <span class="id" title="var">F</span> <span class="id" title="var">f</span> =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">mbinddt</span> <span class="id" title="var">term</span> <span class="id" title="var">G</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> =&gt; <span class="id" title="var">ϕ</span> (<span class="id" title="var">T</span> <span class="id" title="var">k</span> <span class="id" title="var">B</span>) ∘ <span class="id" title="var">f</span> <span class="id" title="var">k</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">intros</span>. <span class="id" title="var">ext</span> <span class="id" title="var">t</span>. <span class="id" title="tactic">unfold</span> <span class="id" title="var">compose</span> <span class="id" title="tactic">at</span> 1.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">generalize</span> <span class="id" title="tactic">dependent</span> <span class="id" title="var">f</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">induction</span> <span class="id" title="var">t</span> <span class="id" title="keyword">using</span> <span class="id" title="var">term_mind2</span>; <span class="id" title="var">cbn</span>; <span class="id" title="tactic">intro</span> <span class="id" title="var">f</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="comment">(*&nbsp;left&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">ap_morphism_1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">appmor_pure</span> <span class="id" title="var">F</span> <span class="id" title="var">G</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Done&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="comment">(*&nbsp;left&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">ap_morphism_1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">appmor_pure</span> <span class="id" title="var">F</span> <span class="id" title="var">G</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Done&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="comment">(*&nbsp;left&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">ap_morphism_1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<span class="id" title="var">appmor_pure</span> <span class="id" title="var">F</span> <span class="id" title="var">G</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">invert_applicative</span>; <span class="id" title="tactic">rewrite</span> <span class="id" title="var">appmor_natural</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;right&nbsp;side&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> &lt;- <span class="id" title="var">IHt2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Done&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Unset</span> <span class="id" title="var">Keyed</span> <span class="id" title="var">Unification</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">End</span> <span class="id" title="var">law4</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <span class="id" title="var">laws</span>.<br/>
+
+<br/>
+<span class="comment">(*|<br/>
+-------------------------<br/>
+Multisorted&nbsp;DTM&nbsp;instance<br/>
+-------------------------<br/>
+|*)</span><br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span> <span class="id" title="var">DTP_term</span>: <span class="id" title="var">DTPreModule</span> (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) <span class="id" title="var">term</span> <span class="id" title="var">T</span> :=<br/>
+&nbsp;&nbsp;{| <span class="id" title="var">dtp_mbinddt_mret</span> := @<span class="id" title="var">mbinddt_mret_term</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">dtp_mbinddt_mbinddt</span> := @<span class="id" title="var">mbinddt_mbinddt_term</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">dtp_mbinddt_morphism</span> := @<span class="id" title="var">mbinddt_morphism_term</span>;<br/>
+&nbsp;&nbsp;|}.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span>: <span class="id" title="keyword">forall</span> <span class="id" title="var">k</span> : <span class="id" title="var">unit</span>, <span class="id" title="var">DTPreModule</span> (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) (<span class="id" title="var">T</span> <span class="id" title="var">k</span>) <span class="id" title="var">T</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <span class="id" title="var">k</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">k</span> <span class="id" title="keyword">with</span> <span class="id" title="var">tt</span> =&gt; <span class="id" title="var">DTP_term</span> <span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span>: <span class="id" title="var">DTM</span> (<span class="id" title="var">list</span> <span class="id" title="var">atom</span>) <span class="id" title="var">T</span> :=<br/>
+&nbsp;&nbsp;{| <span class="id" title="var">dtm_mbinddt_comp_mret</span> := <span class="id" title="var">mbinddt_comp_mret_T</span>;<br/>
+&nbsp;&nbsp;|}.<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="http://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a>
+</div>
+</div>
+</body>
+
+</html>

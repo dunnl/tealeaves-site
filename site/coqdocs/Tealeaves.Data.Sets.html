@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="./indexpage.html"> Index </a>
+      <a href="./toc.html"> Table of Contents </a>
+    </span>
+</div>
+    <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="main">
+<h1 class="libtitle">Tealeaves.Data.Sets</h1>
+
+<div class="code">
+<span class="id" title="keyword">From</span> <span class="id" title="var">Tealeaves</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span><br/>
+&nbsp;&nbsp;<a class="idref" href="Tealeaves.Classes.Monoid.html#"><span class="id" title="library">Classes.Monoid</span></a>.<br/>
+
+<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Generalizable</span> <span class="id" title="keyword">Variables</span> <span class="id" title="var">A</span> <span class="id" title="var">B</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab51"></a><h1 class="section">Sets</h1>
+
+</div>
+<div class="code">
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> "( -&gt; B )" := (<span class="id" title="keyword">fun</span> <a id="A:1" class="idref" href="#A:1"><span class="id" title="binder">A</span></a> =&gt; <a class="idref" href="Tealeaves.Data.Sets.html#A:1"><span class="id" title="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <span class="id" title="var">B</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 50).<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> "'set'" := (<a class="idref" href="Tealeaves.Data.Sets.html#5d1c9333c3b363a4ff25d066d46d4d38"><span class="id" title="notation">(-&gt;</span></a> <span class="id" title="keyword">Prop</span><a class="idref" href="Tealeaves.Data.Sets.html#5d1c9333c3b363a4ff25d066d46d4d38"><span class="id" title="notation">)</span></a>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab52"></a><h2 class="section">Operations</h2>
+
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="set_one" class="idref" href="#set_one"><span class="id" title="definition">set_one</span></a> {<a id="A:2" class="idref" href="#A:2"><span class="id" title="binder">A</span></a>} : <a class="idref" href="Tealeaves.Data.Sets.html#A:2"><span class="id" title="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="set_empty" class="idref" href="#set_empty"><span class="id" title="definition">set_empty</span></a> {<a id="A:3" class="idref" href="#A:3"><span class="id" title="binder">A</span></a>} : <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a> :=<br/>
+&nbsp;&nbsp;<a class="idref" href="Tealeaves.Prelude.html#const"><span class="id" title="definition">const</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#False"><span class="id" title="inductive">False</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="set_add" class="idref" href="#set_add"><span class="id" title="definition">set_add</span></a> {<a id="A:4" class="idref" href="#A:4"><span class="id" title="binder">A</span></a>} : <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <a id="x:5" class="idref" href="#x:5"><span class="id" title="binder">x</span></a> <a id="y:6" class="idref" href="#y:6"><span class="id" title="binder">y</span></a> <a id="p:7" class="idref" href="#p:7"><span class="id" title="binder">p</span></a> =&gt; <a class="idref" href="Tealeaves.Data.Sets.html#x:5"><span class="id" title="variable">x</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#p:7"><span class="id" title="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#f031fe1957c4a4a8e217aa46af2b4e25"><span class="id" title="notation">\/</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#y:6"><span class="id" title="variable">y</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#p:7"><span class="id" title="variable">p</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab53"></a><h2 class="section">Notations and tactics</h2>
+
+</div>
+<div class="code">
+<span class="id" title="keyword">Module</span> <a id="Notations" class="idref" href="#Notations"><span class="id" title="module">Notations</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Notation</span> <a id="645193e0a8cec1c8ba102281c1311ef6" class="idref" href="#645193e0a8cec1c8ba102281c1311ef6"><span class="id" title="notation">&quot;</span></a>∅" := <a class="idref" href="Tealeaves.Data.Sets.html#set_empty"><span class="id" title="definition">set_empty</span></a> : <span class="id" title="var">tealeaves_scope</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Notation</span> <a id="f47b92762d79346bcd8a6569478ba954" class="idref" href="#f47b92762d79346bcd8a6569478ba954"><span class="id" title="notation">&quot;</span></a>{{ x }}" := (<a class="idref" href="Tealeaves.Data.Sets.html#set_one"><span class="id" title="definition">set_one</span></a> <span class="id" title="var">x</span>) : <span class="id" title="var">tealeaves_scope</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Infix</span> <a id="fc28ab41a8c0a013bee8d4ee45936a3c" class="idref" href="#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">&quot;</span></a>∪" := <a class="idref" href="Tealeaves.Data.Sets.html#set_add"><span class="id" title="definition">set_add</span></a> (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 61, <span class="id" title="tactic">left</span> <span class="id" title="keyword">associativity</span>) : <span class="id" title="var">tealeaves_scope</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Notation</span> <a id="1430655e47f91eefbb7f51840141dbdf" class="idref" href="#1430655e47f91eefbb7f51840141dbdf"><span class="id" title="notation">&quot;</span></a>( -&gt; B )" := (<span class="id" title="keyword">fun</span> <a id="A:8" class="idref" href="#A:8"><span class="id" title="binder">A</span></a> =&gt; <a class="idref" href="Tealeaves.Data.Sets.html#A:8"><span class="id" title="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <span class="id" title="var">B</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 50) : <span class="id" title="var">tealeaves_scope</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Notation</span> <a id="Notations.::tealeaves_scope:'set'" class="idref" href="#Notations.::tealeaves_scope:'set'"><span class="id" title="notation">&quot;</span></a>'set'" := (<a class="idref" href="Tealeaves.Data.Sets.html#5d1c9333c3b363a4ff25d066d46d4d38"><span class="id" title="notation">(-&gt;</span></a> <span class="id" title="keyword">Prop</span><a class="idref" href="Tealeaves.Data.Sets.html#5d1c9333c3b363a4ff25d066d46d4d38"><span class="id" title="notation">)</span></a>) : <span class="id" title="var">tealeaves_scope</span>.<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Tealeaves.Data.Sets.html#Notations"><span class="id" title="module">Notations</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Import</span> <a class="idref" href="Tealeaves.Data.Sets.html#Notations"><span class="id" title="module">Notations</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Create HintDb</span> <span class="id" title="var">tea_set</span>.<br/>
+<span class="id" title="keyword">Tactic Notation</span> "simpl_set" := (<span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">tea_set</span>).<br/>
+<span class="id" title="keyword">Tactic Notation</span> "simpl_set" "in" <span class="id" title="var">hyp</span>(<span class="id" title="var">H</span>) := (<span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">tea_set</span> <span class="id" title="var">H</span>).<br/>
+<span class="id" title="keyword">Tactic Notation</span> "simpl_set" "in" "*" := (<span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">tea_set</span> <span class="id" title="tactic">in</span> *).<br/>
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">unfold_set</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">unfold</span> <a class="idref" href="Tealeaves.Data.Sets.html#set_empty"><span class="id" title="definition">set_empty</span></a>; <span class="id" title="tactic">unfold</span> <a class="idref" href="Tealeaves.Data.Sets.html#set_add"><span class="id" title="definition">set_add</span></a>; <span class="id" title="tactic">unfold</span> <a class="idref" href="Tealeaves.Prelude.html#const"><span class="id" title="definition">const</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">solve_basic_set</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">unfold</span> <span class="id" title="var">transparent</span> <span class="id" title="var">tcs</span>; <span class="id" title="var">unfold_set</span>; <span class="id" title="tactic">unfold</span> <a class="idref" href="Tealeaves.Prelude.html#compose"><span class="id" title="definition">compose</span></a>; <span class="id" title="tactic">try</span> <span class="id" title="var">setext</span>;<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">first</span> [<span class="id" title="tactic">tauto</span> | <span class="id" title="tactic">firstorder</span> (<span class="id" title="tactic">subst</span>; (<span class="id" title="tactic">solve</span> <span class="id" title="tactic">auto</span> + <span class="id" title="tactic">eauto</span>)) ].<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab54"></a><h2 class="section">Set monoid instance</h2>
+
+</div>
+<div class="code">
+<span class="id" title="keyword">Section</span> <a id="set_monoid" class="idref" href="#set_monoid"><span class="id" title="section">set_monoid</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<a id="A:9" class="idref" href="#A:9"><span class="id" title="binder">A</span></a> : <span class="id" title="keyword">Type</span>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Implicit</span> <span class="id" title="keyword">Types</span> (<span class="id" title="var">s</span> <span class="id" title="var">t</span> : <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a>) (<span class="id" title="var">a</span> : <a class="idref" href="Tealeaves.Data.Sets.html#set_monoid.A"><span class="id" title="variable">A</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="set_add_nil_l" class="idref" href="#set_add_nil_l"><span class="id" title="definition">set_add_nil_l</span></a> : <span class="id" title="keyword">forall</span> <a id="s:10" class="idref" href="#s:10"><span class="id" title="binder">s</span></a>, <a class="idref" href="Tealeaves.Data.Sets.html#s:10"><span class="id" title="variable">s</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#645193e0a8cec1c8ba102281c1311ef6"><span class="id" title="notation">∅</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#s:10"><span class="id" title="variable">s</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">ltac</span>:(<span class="id" title="var">solve_basic_set</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="set_add_nil_r" class="idref" href="#set_add_nil_r"><span class="id" title="definition">set_add_nil_r</span></a> : <span class="id" title="keyword">forall</span> <a id="s:11" class="idref" href="#s:11"><span class="id" title="binder">s</span></a>, <a class="idref" href="Tealeaves.Data.Sets.html#645193e0a8cec1c8ba102281c1311ef6"><span class="id" title="notation">∅</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#s:11"><span class="id" title="variable">s</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#s:11"><span class="id" title="variable">s</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">ltac</span>:(<span class="id" title="var">solve_basic_set</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="set_add_assoc" class="idref" href="#set_add_assoc"><span class="id" title="definition">set_add_assoc</span></a> : <span class="id" title="keyword">forall</span> <a id="s:12" class="idref" href="#s:12"><span class="id" title="binder">s</span></a> <a id="t:13" class="idref" href="#t:13"><span class="id" title="binder">t</span></a> <a id="u:14" class="idref" href="#u:14"><span class="id" title="binder">u</span></a>, <a class="idref" href="Tealeaves.Data.Sets.html#s:12"><span class="id" title="variable">s</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#t:13"><span class="id" title="variable">t</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#u:14"><span class="id" title="variable">u</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#s:12"><span class="id" title="variable">s</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">(</span></a><a class="idref" href="Tealeaves.Data.Sets.html#t:13"><span class="id" title="variable">t</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#u:14"><span class="id" title="variable">u</span></a><a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">)</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">ltac</span>:(<span class="id" title="var">solve_basic_set</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="set_add_comm" class="idref" href="#set_add_comm"><span class="id" title="definition">set_add_comm</span></a> : <span class="id" title="keyword">forall</span> <a id="s:15" class="idref" href="#s:15"><span class="id" title="binder">s</span></a> <a id="t:16" class="idref" href="#t:16"><span class="id" title="binder">t</span></a>, <a class="idref" href="Tealeaves.Data.Sets.html#s:15"><span class="id" title="variable">s</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#t:16"><span class="id" title="variable">t</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#t:16"><span class="id" title="variable">t</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#s:15"><span class="id" title="variable">s</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">ltac</span>:(<span class="id" title="var">solve_basic_set</span>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="set_in_empty" class="idref" href="#set_in_empty"><span class="id" title="definition">set_in_empty</span></a> : <span class="id" title="keyword">forall</span> <a id="a:17" class="idref" href="#a:17"><span class="id" title="binder">a</span></a>, <a class="idref" href="Tealeaves.Data.Sets.html#645193e0a8cec1c8ba102281c1311ef6"><span class="id" title="notation">∅</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#645193e0a8cec1c8ba102281c1311ef6"><span class="id" title="notation">a</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#False"><span class="id" title="inductive">False</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">ltac</span>:(<span class="id" title="var">solve_basic_set</span>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="set_in_add" class="idref" href="#set_in_add"><span class="id" title="definition">set_in_add</span></a> : <span class="id" title="keyword">forall</span> <a id="s:18" class="idref" href="#s:18"><span class="id" title="binder">s</span></a> <a id="t:19" class="idref" href="#t:19"><span class="id" title="binder">t</span></a> <a id="a:20" class="idref" href="#a:20"><span class="id" title="binder">a</span></a>, <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">(</span></a><a class="idref" href="Tealeaves.Data.Sets.html#s:18"><span class="id" title="variable">s</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">∪</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#t:19"><span class="id" title="variable">t</span></a><a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">)</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#fc28ab41a8c0a013bee8d4ee45936a3c"><span class="id" title="notation">a</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">(</span></a><a class="idref" href="Tealeaves.Data.Sets.html#s:18"><span class="id" title="variable">s</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#a:20"><span class="id" title="variable">a</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#f031fe1957c4a4a8e217aa46af2b4e25"><span class="id" title="notation">\/</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#t:19"><span class="id" title="variable">t</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#a:20"><span class="id" title="variable">a</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">ltac</span>:(<span class="id" title="var">solve_basic_set</span>).<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Tealeaves.Data.Sets.html#set_monoid"><span class="id" title="section">set_monoid</span></a>.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Rewrite</span> @<a class="idref" href="Tealeaves.Data.Sets.html#set_add_nil_l"><span class="id" title="definition">set_add_nil_l</span></a> @<a class="idref" href="Tealeaves.Data.Sets.html#set_add_nil_r"><span class="id" title="definition">set_add_nil_r</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<a class="idref" href="Tealeaves.Data.Sets.html#set_add_assoc"><span class="id" title="definition">set_add_assoc</span></a> @<a class="idref" href="Tealeaves.Data.Sets.html#set_in_empty"><span class="id" title="definition">set_in_empty</span></a> @<a class="idref" href="Tealeaves.Data.Sets.html#set_in_add"><span class="id" title="definition">set_in_add</span></a> : <span class="id" title="var">tea_set</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span> <a id="Monoid_op_set" class="idref" href="#Monoid_op_set"><span class="id" title="instance">Monoid_op_set</span></a> {<a id="A:21" class="idref" href="#A:21"><span class="id" title="binder">A</span></a>} : <a class="idref" href="Tealeaves.Classes.Monoid.html#Monoid_op"><span class="id" title="class">Monoid_op</span></a> (<a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a>) := @<a class="idref" href="Tealeaves.Data.Sets.html#set_add"><span class="id" title="definition">set_add</span></a> <span class="id" title="var">A</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>] <span class="id" title="keyword">Instance</span> <a id="Monoid_unit_set" class="idref" href="#Monoid_unit_set"><span class="id" title="instance">Monoid_unit_set</span></a> {<a id="A:22" class="idref" href="#A:22"><span class="id" title="binder">A</span></a>} : <a class="idref" href="Tealeaves.Classes.Monoid.html#Monoid_unit"><span class="id" title="class">Monoid_unit</span></a> (<a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a>) := <a class="idref" href="Tealeaves.Data.Sets.html#set_empty"><span class="id" title="definition">set_empty</span></a>.<br/>
+
+<br/>
+#[<span class="id" title="var">export</span>, <span class="id" title="var">program</span>] <span class="id" title="keyword">Instance</span> <a id="Monoid_set" class="idref" href="#Monoid_set"><span class="id" title="instance">Monoid_set</span></a> {<a id="A:23" class="idref" href="#A:23"><span class="id" title="binder">A</span></a>} :<br/>
+&nbsp;&nbsp;@<a class="idref" href="Tealeaves.Classes.Monoid.html#Monoid"><span class="id" title="class">Monoid</span></a> (<a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#:::'set'"><span class="id" title="notation">A</span></a>) (@<a class="idref" href="Tealeaves.Data.Sets.html#Monoid_op_set"><span class="id" title="instance">Monoid_op_set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#A:23"><span class="id" title="variable">A</span></a>) (@<a class="idref" href="Tealeaves.Data.Sets.html#Monoid_unit_set"><span class="id" title="instance">Monoid_unit_set</span></a> <a class="idref" href="Tealeaves.Data.Sets.html#A:23"><span class="id" title="variable">A</span></a>).<br/>
+
+<br/>
+<span class="id" title="keyword">Solve</span> <span class="id" title="keyword">Obligations</span> <span class="id" title="keyword">with</span> (<span class="id" title="tactic">intros</span>; <span class="id" title="tactic">unfold</span> <span class="id" title="var">transparent</span> <span class="id" title="var">tcs</span>; <span class="id" title="var">solve_basic_set</span>).<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="http://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a>
+</div>
+</div>
+</body>
+
+</html>

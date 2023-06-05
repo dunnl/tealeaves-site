@@ -1,0 +1,2483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="./indexpage.html"> Index </a>
+      <a href="./toc.html"> Table of Contents </a>
+    </span>
+</div>
+    <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="main">
+<div id="toc">
+<h2><a href="Tealeaves.LibTactics.html">Tealeaves.LibTactics</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.LibTactics.html#lab1">LibTactics: A Collection of Handy General-Purpose Tactics</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Axioms.html">Tealeaves.Axioms</a></h2>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="Tealeaves.Axioms.html#lab2">Support for reasoning with extensionality</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Prelude.html">Tealeaves.Prelude</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Prelude.html#lab3">General operations</a>
+
+</li>
+<li><a href="Tealeaves.Prelude.html#lab4">Tactics</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Prelude.html#lab5">Tactics for rewriting</a>
+
+</li>
+<li><a href="Tealeaves.Prelude.html#lab10">Unfolding operational typeclasses</a>
+
+</li>
+<li><a href="Tealeaves.Prelude.html#lab11">Support for comparing natural numbers</a>
+
+</li>
+<li><a href="Tealeaves.Prelude.html#lab12">General tactics</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Data.Product.html">Tealeaves.Data.Product</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Data.Product.html#lab13">Monoidal category-theoretic structure on types</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Data.Product.html#lab14">Reassociating products</a>
+
+</li>
+<li><a href="Tealeaves.Data.Product.html#lab15">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Data.Product.html#lab16">Monoidal category theory laws</a>
+
+</li>
+<li><a href="Tealeaves.Data.Product.html#lab17">Currying and uncurrying</a>
+
+</li>
+<li><a href="Tealeaves.Data.Product.html#lab18">Deletions (projections)</a>
+
+</li>
+<li><a href="Tealeaves.Data.Product.html#lab19">Miscellaneous</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.EqDec_eq.html">Tealeaves.Classes.EqDec_eq</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.EqDec_eq.html#lab20">Types with decidable equality</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.EqDec_eq.html#lab21">Support for decidable equalities</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Category.html">Tealeaves.Classes.Category</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Category.html#lab22">Categories</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Category.html#lab23">Operational typeclasses</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Category.html#lab24">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Category.html#lab25">Category typeclass</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Category.html#lab26">Functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Category.html#lab27">Natural transformations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Category.html#lab28">Monoidal structure on endofunctors</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Category.html#lab29">Monads and modules</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Category.html#lab30">Right modules of endofunctors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Category.html#lab31">The <span class="inlinecode"><span class="id" title="var">bind</span></span> operation</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Monoid.html">Tealeaves.Classes.Monoid</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Monoid.html#lab32">Monoids</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Monoid.html#lab33">Operational typeclasses</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monoid.html#lab34">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monoid.html#lab35">Monoid typeclass</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monoid.html#lab36">Some rudimentary automation</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Monoid.html#lab37">Cartesian product of monoids</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Comonoid.html">Tealeaves.Classes.Comonoid</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Comonoid.html#lab38">Comonoids</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Comonoid.html#lab39">Operational typeclasses</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonoid.html#lab40">Comonoid typeclass</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonoid.html#lab41">The "copy" comonoid</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Functor.html">Tealeaves.Classes.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Functor.html#lab42">Endofunctors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Functor.html#lab43">Natural transformations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Functor.html#lab44">Notations</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Identity.html">Tealeaves.Functors.Identity</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Identity.html#lab45">The identity functor</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Compose.html">Tealeaves.Functors.Compose</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Compose.html#lab46">The composition of two functors</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Data.Strength.html">Tealeaves.Data.Strength</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Data.Strength.html#lab47">Tensorial strength</a>
+
+</li>
+<li><a href="Tealeaves.Data.Strength.html#lab48">Notations</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Data.Natural.html">Tealeaves.Data.Natural</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Data.Natural.html#lab49">Natural numbers with addition</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Data.Prop.html">Tealeaves.Data.Prop</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Data.Prop.html#lab50">Propositional monoids</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Data.Sets.html">Tealeaves.Data.Sets</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Data.Sets.html#lab51">Sets</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Data.Sets.html#lab52">Operations</a>
+
+</li>
+<li><a href="Tealeaves.Data.Sets.html#lab53">Notations and tactics</a>
+
+</li>
+<li><a href="Tealeaves.Data.Sets.html#lab54">Set monoid instance</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Applicative.html">Tealeaves.Classes.Applicative</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Applicative.html#lab55">Applicative functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Applicative.html#lab56">Homomorphisms between applicative functors</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Applicative.html#lab58">Basic coherence properties</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Applicative.html#lab59">Mapping and reassociating <code>⊗</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Applicative.html#lab60">The category of applicative functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Applicative.html#lab61">The identity applicative functor</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Applicative.html#lab63">Composition of applicative functors</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Applicative.html#lab65">The "ap" combinator <code>&lt;⋆&gt; </code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Applicative.html#lab66">Convenience laws for <code>ap</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Applicative.html#lab67">Composition of functors and <code>ap</code> / <code>&lt;⋆&gt; </code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Applicative.html#lab68">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Applicative.html#lab69">Notations</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Kleisli.Monad.html">Tealeaves.Classes.Kleisli.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab70">Kleisli presentation of monads</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab71"><code>Bind</code> operation</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab72">Monads</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab73">Monad Homomorphisms</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab74">Right modules</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab75">Kleisli category laws</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab76">Left identity law</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab77">Right identity law</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab78">Associativity law</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab79">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Monad.html#lab80">Derived functor instance</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Monad.html">Tealeaves.Classes.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Monad.html#lab84">Monads</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Monad.html#lab85">Operations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab86">Monads</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab87">Monad homomorphisms</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab88">Algebraic monad to Kleisli monad</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Monad.html#lab92">Derived laws</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab93">Left identity law</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab94">Right identity law</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab95">Associativity law</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab96">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab97">The identity monad</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab98">Miscellaneous properties</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Monad.html#lab99">Monadic applicative functors</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Comonad.html">Tealeaves.Classes.Comonad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Comonad.html#lab100">Comonads</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonad.html#lab101">Kleisli presentation of comonads</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Comonad.html#lab102">Lifting operation <code>cobind</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonad.html#lab103">Specification for <code>fmap</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonad.html#lab105">Functor laws for <code>cobind</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonad.html#lab107">Co-kleisli category laws</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonad.html#lab108">cokcompose lemmas</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonad.html#lab109">Composition laws for <code>cobind</code>/<code>fmap</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Comonad.html#lab110">Notations</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.ParamComonad.html">Tealeaves.Classes.ParamComonad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.ParamComonad.html#lab111">Parameterized comonads</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.RightModule.html">Tealeaves.Classes.RightModule</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.RightModule.html#lab112">Right modules</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.RightModule.html#lab113">Operations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.RightModule.html#lab114">Right modules</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.RightModule.html#lab115">Coerceing monads into modules</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.RightModule.html#lab116">Right modules compose with functors</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.RightModule.html#lab117">Kleisli laws for <code>bind</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.RightModule.html#lab120">Specification for <code>fmap</code></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.RightComodule.html">Tealeaves.Classes.RightComodule</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.RightComodule.html#lab122">Right Comodules</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.RightComodule.html#lab123">Homomorphisms of right comodules</a>
+
+</li>
+<li><a href="Tealeaves.Classes.RightComodule.html#lab124">Comonads form right co-modules</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.BeckDistributiveLaw.html">Tealeaves.Classes.BeckDistributiveLaw</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.BeckDistributiveLaw.html#lab125">Beck distribution laws</a>
+
+</li>
+<li><a href="Tealeaves.Classes.BeckDistributiveLaw.html#lab126">Beck distributive laws induce a composite monad</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Bimonad.html">Tealeaves.Classes.Bimonad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Bimonad.html#lab127">Bimonad typeclass</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Bimonad.html#lab128">Kleisli lifting operation <code>bibind</code></a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Categories.Types.html">Tealeaves.Categories.Types</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Categories.Types.html#lab129"><span class="inlinecode"><span class="id" title="var">Category</span></span> instance</a>
+
+</li>
+<li><a href="Tealeaves.Categories.Types.html#lab130">Instances for general categories</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Categories.TypeFamilies.html">Tealeaves.Categories.TypeFamilies</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Categories.TypeFamilies.html#lab131">The category of constant k-families</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Categories.TypeFamilies.html#lab132">Specialized notations for multisorted Tealeaves</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Categories.TypeFamilies.html#lab133">Targeted morphisms</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Categories.TypeFamilies.html#lab137">Automation support</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Categories.TypeFamilies.html#lab138">Other lemmas</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Constant.html">Tealeaves.Functors.Constant</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Constant.html#lab139">Inductive definition of the constant functor</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Constant.html#lab140">Constant applicative functors</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Constant.html#lab141">Computational definition of the constant functor</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.ProductFunctor.html">Tealeaves.Functors.ProductFunctor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.ProductFunctor.html#lab142">Cartesian product of functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.ProductFunctor.html#lab143">Cartesian product of applicative functors</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.ProductFunctor.html#lab144">Notations</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Environment.html">Tealeaves.Functors.Environment</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Environment.html#lab145">Product functor</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Environment.html#lab146">Environment comonad (a/k/a "Reader" or "co-Reader")</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Environment.html#lab147">Miscellaneous properties</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Writer.html">Tealeaves.Functors.Writer</a></h2>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="Tealeaves.Functors.Writer.html#lab148">Properties of <code>strength</code> w.r.t. monad operations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.Writer.html#lab149">Writer monad</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Writer.html#lab150">Writer bimonad</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Writer.html#lab151"><code>T ∘ (W ×)</code> is a monad</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Writer.html#lab152"><code>(W ×)</code> is a bimonad</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Writer.html#lab153"><code>incr</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.Writer.html#lab154">Miscellaneous properties</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Sets.html">Tealeaves.Functors.Sets</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Sets.html#lab155">The <code>set</code> monad</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Sets.html#lab156">Functor instance</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Sets.html#lab159"><span class="inlinecode"><span class="id" title="var">fmap</span></span> is a monoid homomorphism</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Sets.html#lab160">Monad operations</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Sets.html#lab161">Rewriting laws for <span class="inlinecode"><span class="id" title="var">join</span></span> and <span class="inlinecode"><span class="id" title="var">ret</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Functors.Sets.html#lab162">Monad laws</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.Sets.html#lab163">Set as an applicative functor</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Sets.html#lab164"><span class="inlinecode"><span class="id" title="tactic">set</span></span>/<span class="inlinecode"><span class="id" title="tactic">set</span></span> right module</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Sets.html#lab165">Rewriting lemmas for <code>bind</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.Sets.html#lab166"><code>bind</code> is a monoid homomorphism</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Setlike.Functor.html">Tealeaves.Classes.Setlike.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Setlike.Functor.html#lab167">Set-like functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Setlike.Functor.html#lab168"><span class="inlinecode"><span class="id" title="var">toset</span></span>-preserving natural transformations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Setlike.Functor.html#lab169">Instance for <code>set</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Setlike.Functor.html#lab170">Basic properties of set-like functors</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Setlike.Functor.html#lab171">Notations</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Setlike.Monad.html">Tealeaves.Classes.Setlike.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Setlike.Monad.html#lab172">Set-like monads</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Setlike.Monad.html#lab173">Instance for <span class="inlinecode"><span class="id" title="tactic">set</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Setlike.Monad.html#lab174">Basic properties of set-like monads</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.List.html">Tealeaves.Functors.List</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.List.html#lab175"><span class="inlinecode"><span class="id" title="var">list</span></span> monoid</a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab176"><span class="inlinecode"><span class="id" title="var">list</span></span> functor</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.List.html#lab177">Rewriting lemmas for <code>fmap</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab178"><span class="inlinecode"><span class="id" title="var">fmap</span></span> is a monoid homomorphism</a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab179">Functor instance</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab180"><span class="inlinecode"><span class="id" title="var">list</span></span> monad</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.List.html#lab181">Rewriting lemmas for <code>join</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab182"><span class="inlinecode"><span class="id" title="var">join</span></span> is a monoid homomorphism</a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab183">Monad instance</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab184"><span class="inlinecode"><span class="id" title="var">list</span></span> is set-like</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.List.html#lab185">Rewriting lemmas for <code>toset</code>\<code>∈</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab186"><span class="inlinecode"><span class="id" title="var">toset</span></span> is a monoid homomorphism</a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab187">Respectfulness conditions</a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab188">Set-like monad instance</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab189">Folding over lists</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.List.html#lab190">Rewriting lemmas for <span class="inlinecode"><span class="id" title="tactic">fold</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab191">Folding a list is a monoid homomorphism</a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab192">Other properties of <code>fold</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab193">Monoids form list (monad-)algebras</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab194">Filtering lists</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.List.html#lab195">Rewriting lemmas for <span class="inlinecode"><span class="id" title="var">filter</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.List.html#lab196"><code>fmap</code> equality inversion lemmas</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Listable.Functor.html">Tealeaves.Classes.Listable.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab197">The <span class="inlinecode"><span class="id" title="var">shape</span></span> operation</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab198">Listable functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab199"><code>tolist</code>-preserving natural transformations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab200">Instance for <span class="inlinecode"><span class="id" title="var">list</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab201">Basic reasoning principles for <code>shape</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab202">Properties of <code>shape</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab203">Rewriting <span class="inlinecode"><span class="id" title="var">shape</span></span> on lists</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab204">Reasoning princples for <code>shape</code> on lists</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab205">Reasoning principles for <code>shape</code> on listable functors</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab206">Listable functors form a monoidal category</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab207">The identity functor is listable</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab208">Listable functors are closed under composition</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab209">Properties of listable functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab210">Respectfulness conditions for listable functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab211">Listable functors are set-like</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab212">Equivalence with shapeliness</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab213">Miscellaneous properties of listable functors</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab214"><span class="inlinecode"><span class="id" title="tactic">fold</span></span> and <span class="inlinecode"><span class="id" title="var">foldMap</span></span> operations</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Functor.html#lab215">Folding over identity and composition functors</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Listable.Monad.html">Tealeaves.Classes.Listable.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Monad.html#lab216">Listable monads</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Monad.html#lab217">Instance for <span class="inlinecode"><span class="id" title="var">list</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Monad.html#lab218">Characterizations of listable monad compatibility conditions</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Monad.html#lab219">Listable monads</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Listable.Monad.html#lab220">Properties of listable monads</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Listable.Monad.html#lab221">Listable monads are set-like</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Kleisli.Decorated.Functor.html">Tealeaves.Classes.Kleisli.Decorated.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Functor.html#lab222">Operation <code>fmapdt</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Functor.html#lab223">Typeclass</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Functor.html#lab224">To functor</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html">Tealeaves.Classes.Kleisli.Decorated.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html#lab225">The <code>prepromote</code> operation</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html#lab226">The <code>Bindd</code> operation</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html#lab227">Kleisli composition</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html#lab228">Decorated Monad</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html#lab229">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html#lab230">Kleisli composition</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html#lab231">Derived instances</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Decorated.Monad.html#lab232">Lesser Kleisli composition laws</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Decorated.Functor.html">Tealeaves.Classes.Decorated.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab241">Decorated functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab242">Decoration-preserving natural transformations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab243">A decorated functor is precisely a right comodule of <code>prod E</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab244">The <span class="inlinecode"><span class="id" title="var">shift</span></span> operation</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab245">The <code>shift</code> operation</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab246">Basic properties of <code>shift</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab247">Helper lemmas for proving typeclass instances</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab248">Miscellaneous properties of decorated functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab249">Decorated functor instance for <span class="inlinecode"><span class="id" title="var">Environment</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab250">Algebraic decorated functor to Kleisli decorated functor</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab251">Kleisli laws for <code>fmapd</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab252">Decorated functors form a monoidal category</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab253">Zero-decorated functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab254">The identity (zero-)decorated functor</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab255">Decorated functors are closed under composition</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab256">Category laws for composition of decorated functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Functor.html#lab259">Composition with zero-decorated functors</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Decorated.Monad.html">Tealeaves.Classes.Decorated.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Monad.html#lab260">Decorated monads</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Monad.html#lab261">Decorated right modules</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Monad.html#lab262">Algebraic decorated monad to Kleisli decorated monad</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Monad.html#lab263">Kleisli laws</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Monad.html#lab267">Basic properties of <span class="inlinecode"><span class="id" title="var">shift</span></span> on monads</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Monad.html#lab268">Helper lemmas for proving instances</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Monad.html#lab269">Pushing decorations through a monoid homomorphism</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Monad.html#lab270">Decorated monads in terms of monad homomorphisms</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Store.html">Tealeaves.Functors.Store</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Store.html#lab271">The <span class="inlinecode"><span class="id" title="var">Store</span></span> functor</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Store.html#lab272"><code>Store</code> as a parameterized comonad</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Store.html#lab273">A representation lemma</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Batch.html">Tealeaves.Functors.Batch</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Batch.html#lab274">The <span class="inlinecode"><span class="id" title="var">Batch</span></span> idiom</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Batch.html#lab275">Applicative Instance</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab277">Functoriality of <span class="inlinecode"><span class="id" title="var">Batch</span></span> in all arguments</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab278"><code>Batch</code> as a free applicative functor (<code>runBatch</code>)</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Batch.html#lab279">Naturality of of <code>runBatch</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab280"><code>runBatch</code> is an applicative morphism</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab281"><code>runBatch</code> with monoidal values</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab282">Auxiliary lemmas for runBatch and constant applicative functors.</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab283"><code>Batch</code> as a parameterized comonad</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab284">Specialized <code>Batch</code> for DTMs</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Batch.html#lab285">Applicative Instance</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab286">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab288">Functoriality of <span class="inlinecode"><span class="id" title="var">Batch_DTM</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab289">The <code>runBatch_DTM</code> operation</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Batch.html#lab290">Naturality of of <code>runBatch_DTM</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab291"><code>runBatch_DTM</code> is an applicative morphism</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch.html#lab292"><code>runBatch_DTM</code> commutes with applicative morphisms</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Batch2.html">Tealeaves.Functors.Batch2</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Batch2.html#lab293">The <code>Batch2</code> functor</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Batch2.html#lab294">Applicative Instance</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch2.html#lab295">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch2.html#lab297">Functoriality of <span class="inlinecode"><span class="id" title="var">Batch2</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch2.html#lab298">The <code>runBatch2</code> operation</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Batch2.html#lab299">Naturality of of <code>runBatch2</code></a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch2.html#lab300"><code>runBatch2</code> is an applicative morphism</a>
+
+</li>
+<li><a href="Tealeaves.Functors.Batch2.html#lab301"><code>runBatch2</code> commuts with applicative morphisms</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html">Tealeaves.Classes.Kleisli.Traversable.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab302">"Kleisi"-style presentation of traversable functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab303">Kleisli traversable functor to functor</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab304"><code>Functor</code> instance</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab308">Traversals as <code>Batch</code> coalgebras</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab309">Basic lemmas for <code>runBatch</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab310">Expressing operations using <code>runBatch</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab311">Naturality properties for <code>toBatch</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab313"><code>foldMap</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab314">Lemmas for traversals with constant applicative functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab315">Basic properties of <code>foldMap</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab321"><code>tolist</code> and <code>toset</code> / <code>∈</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab322">Shapeliness</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab323">Listable/set-like instances</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab324">Purity</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Functor.html#lab325">Respectfulness properties</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html">Tealeaves.Classes.Kleisli.Traversable.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab326">Derived instances</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab333">Special cases for Kleisli composition</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab334">Composition with lesser Kleisli operations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab341">Batch</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab342"><code>foldMap</code> on monads</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab343">Composition with <code>bindt</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab344">Composition with <code>bind</code> and <code>ret</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab345">Expressing operations using <code>runBatch</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab346">Characterizing <code>∈</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.Traversable.Monad.html#lab347">Respectfulness properties</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Traversable.Functor.html">Tealeaves.Classes.Traversable.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab348">Traversable functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab349">Distribution-respecting natural transformations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab350">Monoid structure of traversable functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab351">The identity functor is traversable</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab352">Traversable functors are closed under composition</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab353">Basic properties of traversable functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab354"><code>pure</code> is an applicative homomorphism</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab355">Other rules for <code>pure</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab356">Kleisi presentation of traversable functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab357">Traversable instance for <span class="inlinecode"><span class="id" title="var">list</span></span></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab358">Rewriting lemmas for <code>dist</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab359">Traversable instance for <code>prod</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab360">Operations involving constant applicative functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab363">Characterization of distribution w.r.t. (F ◻ G)</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab364">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Functor.html#lab365">Decomposing <code>dist</code> in terms of <code>iterate</code></a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Traversable.Monad.html">Tealeaves.Classes.Traversable.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab366">Traversable monads</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab367">The monad operations as <code>traverse</code>-respecting morphisms</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab368">Algebraic traversable monads to Kleisli traversable monads</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab374">Traversable monad instance for <span class="inlinecode"><span class="id" title="var">list</span></span></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab375"><span class="inlinecode"><span class="id" title="var">list</span></span>/<span class="inlinecode"><span class="id" title="var">list</span></span> right module</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab376">Rewriting lemmas for <code>bindt</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab377">Rewriting lemmas for <code>foldMapd</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab378">Rewriting lemmas for <code>bind</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab379"><code>bind</code> is a monoid homomorphism</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Traversable.Monad.html#lab380">Other rewriting lemmas for <code>bind</code></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Decorated.Setlike.html">Tealeaves.Classes.Decorated.Setlike</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Setlike.html#lab381">Decorated set-like functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Setlike.html#lab382">Derived operation <span class="inlinecode"><span class="id" title="var">tosetd</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Setlike.html#lab383">Utility lemmas for <span class="inlinecode"><span class="id" title="var">shift</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Setlike.html#lab384">Utility lemmas for <span class="inlinecode"><span class="id" title="var">toset</span></span> and <span class="inlinecode"><span class="id" title="var">tosetd</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Setlike.html#lab385">Notations</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Decorated.Listable.html">Tealeaves.Classes.Decorated.Listable</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab386">Decorated listable functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab387">Derived operation <span class="inlinecode"><span class="id" title="var">tolistd</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab388">General properties</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab389">Interaction between <span class="inlinecode"><span class="id" title="var">tolistd</span></span> and <span class="inlinecode"><span class="id" title="var">dec</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab390">Corollaries: <span class="inlinecode"><span class="id" title="var">tolist</span></span> and <span class="inlinecode"><span class="id" title="var">dec</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab391">Corollaries: <span class="inlinecode"><span class="id" title="var">tolistd</span></span> and <span class="inlinecode"><span class="id" title="var">fmap</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab392">Corollaries: <span class="inlinecode"><span class="id" title="var">tolist</span></span> and <span class="inlinecode"><span class="id" title="var">fmapd</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab393">Corollaries: <span class="inlinecode"><span class="id" title="var">tolistd</span></span> and <span class="inlinecode"><span class="id" title="var">fmap</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab394">Decorated listable monads</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Decorated.Listable.html#lab395">Interaction between <span class="inlinecode"><span class="id" title="var">tolistd</span></span>, <span class="inlinecode"><span class="id" title="var">join</span></span>, and <span class="inlinecode"><span class="id" title="var">ret</span></span></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Kleisli.DT.Functor.html">Tealeaves.Classes.Kleisli.DT.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab396">Kleisli presentation</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab397">Operation <code>fmapdt</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab398">Typeclass</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab399">Derived instances</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab400">Composition with lesser Kleisli operations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab404">Batch</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab405">Expressing operations with <code>runBatch</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab409"><code>foldMapd</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab410">Basic properties</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab417"><code>tolistd</code> and <code>tosetd</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab418">Relating <code>tosetd</code> and <code>tolistd</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab419">Characterizing <code>∈d</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab420">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab421">Relating <code>foldMapd</code> and <code>foldMap</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab422">Expressing <code>foldMap</code> with <code>foldMapd</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab423">Relating <code>tolist</code> to <code>tolistd</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab424">Relating <code>toset</code> to <code>tosetd</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab425">Relating <code>∈</code> to <code>∈d</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab426">Characterizing <code>∈</code> to with <code>fmapdt</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Functor.html#lab427">Respectfulness</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Kleisli.DT.Monad.html">Tealeaves.Classes.Kleisli.DT.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab428">Auxiliary lemmas for constant applicative functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab429">Specifications for lesser Kleisli operations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab437">Special cases of Kleisli composition</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab443">Lesser Kleisli typeclass instances</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab444">Monad</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab445">Decorated monad</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab446">Traversable monad</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab447">Decorated-traversable functor</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab448">Decorated functor</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab449">Traversable functor</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab450">Functor</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab451"><code>binddt</code> on the right</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab452"><code>binddt</code> on the left</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab453"><code>bindd</code>, <code>fmapdt</code>, <code>bindt</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab454"><code>bindd</code> on the right</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab455"><code>bindd</code> on the left</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab456"><code>fmapdt</code> on the right</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab457"><code>fmapdt</code> on the left</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab458"><code>bindt</code> on the right</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab459"><code>bindt</code> on the left</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab460"><code>traverse</code> on the right</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab461"><code>traverse</code> on the left</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab462"><code>fmapd</code> on the right</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab463"><code>fmapd</code> on the left</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab464"><code>bindd</code> on the right</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab465"><code>bindd</code> on the left</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab466">Auxiliary lemmas for constant applicative functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab467">Batch</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab468">Expressing <code>binddt</code> with <code>runBatch</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab471">Shape and contents</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab472">Relating <code>tolistd</code> and <code>binddt</code> / <code>ret</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab473">Relating <code>tolistd</code> and lesser operations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab474">Corollaries for the rest</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab475">Relating <code>tolist</code> and lesser operations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab476">Characterizing membership in list operations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab477">Characterizing <code>∈d</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab478">Characterizing <code>∈</code> with <code>bindd</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab479">Respectfulness for <code>bindd</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab481">Respectfulness for <code>bind</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab483">Respectfulness for <code>fmapd</code></a>
+
+</li>
+<li><a href="Tealeaves.Classes.Kleisli.DT.Monad.html#lab485">Respectfulness for <code>fmap</code></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.DT.Functor.html">Tealeaves.Classes.DT.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.DT.Functor.html#lab486">Decorated-traversable functors</a>
+
+</li>
+<li><a href="Tealeaves.Classes.DT.Functor.html#lab487">Monoid structure of D-T functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.DT.Functor.html#lab488">The identity functor is D-T</a>
+
+</li>
+<li><a href="Tealeaves.Classes.DT.Functor.html#lab489">D-T functors are closed under composition</a>
+
+</li>
+<li><a href="Tealeaves.Classes.DT.Functor.html#lab490">Zero-decorated traversable functors are decorated-traversable</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Classes.DT.Functor.html#lab491">Kleisli presentation of decorated-traversable functors</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.DT.Monad.html">Tealeaves.Classes.DT.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.DT.Monad.html#lab492">Decorated-traversable monads</a>
+
+</li>
+<li><a href="Tealeaves.Classes.DT.Monad.html#lab493">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.DT.Monad.html#lab494">Kleisli presentation of D-T monads</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Backwards.html">Tealeaves.Functors.Backwards</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Backwards.html#lab495">The <code>Backwards</code> idiom</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Diagonal.html">Tealeaves.Functors.Diagonal</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Diagonal.html#lab496">Diagonal (duplication) applicative functor</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Option.html">Tealeaves.Functors.Option</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Option.html#lab497"><span class="inlinecode"><span class="id" title="var">option</span></span> monad</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.Pathspace.html">Tealeaves.Functors.Pathspace</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.Pathspace.html#lab498">Pathspace applicative functor</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Functors.State.html">Tealeaves.Functors.State</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Functors.State.html#lab499">State monad</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Backends.LN.Atom.html">Tealeaves.Backends.LN.Atom</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.Atom.html#lab500">An opaque type of atoms</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.Atom.html#lab501">Interface for atoms</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Atom.html#lab502">Implementation of atoms</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Atom.html#lab503">Shorthands and notations</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Backends.LN.AtomSet.html">Tealeaves.Backends.LN.AtomSet</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.AtomSet.html#lab504">Definition of <code>AtomSet</code> type</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.AtomSet.html#lab505">Notations for operations on <code>AtomSet</code></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AtomSet.html#lab506">The <span class="inlinecode"><span class="id" title="var">atoms</span></span> operation</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AtomSet.html#lab507">Rewriting rules</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AtomSet.html#lab508">Relating <code>AtomSet.t</code> and <code>list atom</code></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Backends.LN.AssocList.html">Tealeaves.Backends.LN.AssocList</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab509">The <code>alist</code> functor</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab510">Functor instance for <code>alist</code></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab511">DT functor instance for <code>alist</code></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab512">Traversable instance</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab513"><code>envmap</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab514">Rewriting principles for <span class="inlinecode"><span class="id" title="var">envmap</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab515">Specifications for <span class="inlinecode">∈</span> and <code>envmap</code></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab516">Rewriting principles for <span class="inlinecode">∈</span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab517">Tactical lemmas for <span class="inlinecode">∈</span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab518">Domain and range on alists</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab519">Rewriting lemmas for <span class="inlinecode"><span class="id" title="var">dom</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab520">Rewriting lemmas for <span class="inlinecode"><span class="id" title="var">domset</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab521">Rewriting lemmas for <span class="inlinecode"><span class="id" title="var">range</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab522">Rewriting lemmas for <span class="inlinecode">∈</span> <span class="inlinecode"><span class="id" title="var">dom</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab523">Rewriting lemmas for <span class="inlinecode">∈</span> <span class="inlinecode"><span class="id" title="var">domset</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab524">Elements of <span class="inlinecode"><span class="id" title="var">range</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab525">Specifications for operations on association lists</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab526">Specifications for <code>∈</code> and <span class="inlinecode"><span class="id" title="var">dom</span></span>, <span class="inlinecode"><span class="id" title="var">domset</span></span>, <span class="inlinecode"><span class="id" title="var">range</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab527">Support for prettifying association lists</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab528">Tactics for normalizing alists</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab529">Induction principles for alists</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab530">Rewriting principles for <span class="inlinecode"><span class="id" title="var">disjoint</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab531">Tactical lemmas for <span class="inlinecode"><span class="id" title="var">disjoint</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab532">Tactical lemmas for <span class="inlinecode"><span class="id" title="var">uniq</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab533">Rewriting principles for <span class="inlinecode"><span class="id" title="var">uniq</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab534">More facts about <span class="inlinecode"><span class="id" title="var">uniq</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab535">Stronger theorems for <code>∈</code> on <span class="inlinecode"><span class="id" title="var">uniq</span></span> lists</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab536">Facts about <span class="inlinecode"><span class="id" title="var">binds</span></span></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab537">Permutation lemmas</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.AssocList.html#lab538">Tactic support for picking fresh atoms</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Backends.LN.LN.html">Tealeaves.Backends.LN.LN</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.LN.html#lab539">Locally nameless variables</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab540">Locally nameless operations</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.LN.html#lab541">Localized operations</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab542">Extended operations</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab543">Notations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab544">Lemmas for local reasoning</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab545">Basic principles and lemmas</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.LN.html#lab546">Reasoning principles for proving equalities</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab550">Occurrence analysis lemmas</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab554">Free variables</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab559">Utilities for reasoning at the leaves</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.LN.html#lab560">(In)equalities between leaves</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab561"><span class="inlinecode"><span class="id" title="var">subst_loc</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab562"><span class="inlinecode"><span class="id" title="var">open_loc</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab563"><span class="inlinecode"><span class="id" title="var">Miscellaneous</span></span> <span class="inlinecode"><span class="id" title="var">utilities</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab564">Locally nameless metatheory</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.LN.html#lab565">LN analysis: substitution with contexts</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab566">LN analysis: substitution without contexts</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab567">Free variables after substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab568">Upper and lower bounds for leaves after substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab569">Substitution of fresh variables</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab570">Composing substitutions</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab571">Commuting two substitutions</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab572">Local closure is preserved by substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab573">Decompose substitution into closing/opening</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab574">Substitution when <code>u</code> is a LN</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab575">Substitution by the same variable is the identity</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab576">Free variables after variable closing</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab577">Variable closing and local closure</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab578">Upper and lower bounds on free variables after opening</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab579">Opening a locally closed term is the identity</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab580">Opening followed by substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab581">Decompose opening into variable opening followed by substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab582">Opening by a variable, followed by non-equal substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab583">Closing, followed by opening</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab584">Opening by a LN reduces to an <span class="inlinecode"><span class="id" title="var">fmapkr</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab585">Opening, followed by closing</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.LN.html#lab586">Opening and local closure</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Backends.LN.html">Tealeaves.Backends.LN</a></h2>
+<h2><a href="Tealeaves.Multisorted.Classes.Multifunctor.html">Tealeaves.Multisorted.Classes.Multifunctor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.Multifunctor.html#lab587">Multisorted functors</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.Multifunctor.html#lab588">Natural transformations</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.Multifunctor.html#lab589">Identity multisorted functors at some <code>k : K</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.Multifunctor.html#lab590">Composition with ordinary functors</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.Multifunctor.html#lab591">Tensorial strength</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.Multifunctor.html#lab592">Single-sorted maps, <span class="inlinecode"><span class="id" title="var">fmapk</span></span></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.Multifunctor.html#lab593">Identity and composition laws for <span class="inlinecode"><span class="id" title="var">fmapk</span></span></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Multisorted.Classes.DTM.html">Tealeaves.Multisorted.Classes.DTM</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab594">Multisorted DTM typeclass</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab595">Operations</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab596">Definition of Kleisli composition</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab597">Decorated traversable premodule typeclass</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab598">Decorated traversable monad</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab599">Derived operations on DTMs</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab608">Composition between <code>mbinddt</code> and special cases operations</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab611">Purity law for <code>mbinddt</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab613">Derived structures on DTMs</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab614">Some mixed structure composition laws</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab618">Decorated monads (<code>mbindd</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab623">Decorated traversable functors (<code>mfmapdt</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab629">Traversable monads (<code>mbindt</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab635">Some more mixed structure composition laws</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab639">Monads (<code>mbind</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab642">Decorated functors (<code>mfmapd</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab645">Traversable functors (<code>mfmapt</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab648">Functors (<code>mfmap</code>)</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab651">Targeted operations</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab652">Targeted substitution-building combinators: <span class="inlinecode"><span class="id" title="var">btg</span></span> and <span class="inlinecode"><span class="id" title="var">btgd</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab653">Lemmas for <span class="inlinecode"><span class="id" title="var">btgd</span></span>, <span class="inlinecode"><span class="id" title="var">btg</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab654">Rewrite Hint registration</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab655">Derived targeted DTM operations</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab660">Decorated monad (<code>kbindd</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab664">Mixed structure composition laws</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab665">Decorated functors (<code>kfmapd</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab668">Monads (<code>kbind</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab671">Functors (<code>kfmap</code>)</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab674">Notations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab675">Sorted lists with context</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab676">The <code>Batch</code> idiom</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab677">Applicative Instance</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab678">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab680">Functoriality of <span class="inlinecode"><span class="id" title="var">Batch</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab681">The <code>runBatch</code> operation</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab682">Naturality of of <code>runBatch</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab683"><code>runBatch</code> is an applicative morphism</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab684"><code>runBatch</code> commutes with applicative morphisms</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab685">Shape and contents</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab686">Operations</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab687">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab688">Rewriting rules for <code>filterk</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab689">Auxiliary lemmas for constant applicative functors</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab690">Relating <code>∈m</code> and <code>∈md</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab691">Characterizing membership in list operations</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab692">Interaction between <code>tomlistd</code> and <code>mret</code>/<code>mbindd</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab693">Characterizing occurrences post-operation</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab699">Characterizing occurrences post-operation (targetted operations)</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab703">Iterating over a DTM</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab704">Representing <code>mbinddt</code> with <code>runBatch</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab705">Identities for <code>tolist</code> and <code>foldMap</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab706">Other identities</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab707">Respectfulness for <code>mbindd</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab709">Respectfulness for <code>mbindd</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab711">Respectfulness for <code>mfmapd</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab713">Respectfulness for <code>mfmap</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab714">Respectfulness for <code>kbindd</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab716">Respectfulness for mixed structures</a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab717">Respectfulness for <code>kbind</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab719">Respectfulness for <code>kfmapd</code></a>
+
+</li>
+<li><a href="Tealeaves.Multisorted.Classes.DTM.html#lab721">Respectfulness for <code>kfmap</code></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Backends.LN.Multisorted.LN.html">Tealeaves.Backends.LN.Multisorted.LN</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab722">Binders contexts</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab723">Locally nameless variables</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab724">Syntax operations for locally nameless</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab725">Local operations</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab726">Lifted operations</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab727">Notations for operations</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab728">Identity and equality lemmas for operations</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab732">Context-sensitive LN analysis of operations</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab736">Context-agnostic LN analysis of operations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab740">Specifications for <code>free</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab741">Characterizations for <span class="inlinecode"><span class="id" title="var">free</span></span> and <span class="inlinecode"><span class="id" title="var">freeset</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab742"><span class="inlinecode"><span class="id" title="var">free</span></span> variables after <code>open</code>/<code>close</code>/<code>subst</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab746">Lemmas for local reasoning</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab747">Lemmas for proving (in)equalities between leaves</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab748"><span class="inlinecode"><span class="id" title="var">subst_loc</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab749"><span class="inlinecode"><span class="id" title="var">open_loc</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab750">Tactics for local reasoning</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab751">Metatheory for the <code>subst</code> operation</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab752">LN analysis with contexts</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab753">LN analysis without contexts</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab754">Free variables after substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab755">Upper and lower bounds for leaves after substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab756">Substitution of fresh variables</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab757">Composing substitutions</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab758">Commuting two substitutions</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab759">Local closure is preserved by substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab760">Decompose substitution into closing/opening</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab761">Substitution when <code>u</code> is a LN</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab762">Substitution by the same variable is the identity</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab763">Metatheory for <code>close</code></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab764">Free variables after variable closing</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab765">Variable closing and local closure</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab766">Metatheory for <code>open</code></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab767">Upper and lower bounds on free variables after opening</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab768">Opening a locally closed term is the identity</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab769">Opening followed by substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab770">Decompose opening into variable opening followed by substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab771">Opening by a variable, followed by non-equal substitution</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab772">Closing, followed by opening</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab773">Opening by a LN reduces to an <span class="inlinecode"><span class="id" title="var">kfmapd</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab774">Opening, followed by closing</a>
+
+</li>
+<li><a href="Tealeaves.Backends.LN.Multisorted.LN.html#lab775">Opening and local closure</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Examples.STLC.Syntax.html">Tealeaves.Examples.STLC.Syntax</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab776">Language definition</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab777">Notations and automation</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab778">Rewriting lemmas for high-level operations</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab779">Rewriting lemmas for <code>tolist</code>, <code>toset</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab780">Rewriting lemmas for <code>free</code>, <code>freeset</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab781">Rewriting lemmas for <code>foldMapd</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab782">Rewriting lemmas for <code>∈d</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab783">Rewriting lemmas for <code>subst</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.STLC.Syntax.html#lab784">Rewriting lemmas for <code>locally_closed</code></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Examples.STLC.TypeSoundness.html">Tealeaves.Examples.STLC.TypeSoundness</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.STLC.TypeSoundness.html#lab785">Inversion lemmas</a>
+
+</li>
+<li><a href="Tealeaves.Examples.STLC.TypeSoundness.html#lab786">Misc lemmas</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Examples.STLC.SyntaxCategorical.html">Tealeaves.Examples.STLC.SyntaxCategorical</a></h2>
+<h2><a href="Tealeaves.Examples.SystemF.Syntax.html">Tealeaves.Examples.SystemF.Syntax</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab787">The index <span class="inlinecode"><span class="id" title="var">K</span></span></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab788">System F syntax and typeclass instances</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab789">Notations</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab795">Example expressions</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab801"><code>binddt</code> operations</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab802">Example computations</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab803">Demo of opening operation</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab804">Proofs of the DTM axioms</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab805">Helper lemmas for proving DTM axioms</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab806"><code>mbinddt_mret</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab807"><code>mbinddt_mbinddt</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab808"><code>mbinddt_morphism</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab809"><code>mbinddt_comp_mret</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab810"><code>DTPreModule</code> instances</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab811">System F type system and operational rules</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab812">Contexts and well-formedness predicates</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab819">Typing judgments</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Syntax.html#lab820">Values and reduction rules</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Examples.SystemF.Rewriting.html">Tealeaves.Examples.SystemF.Rewriting</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab821">Rewriting operations on <code>typ</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab822">Fundamental operations</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab831">List and occurrence operations</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab840"><code>free</code> and <code>freeset</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab845">Locally nameless operations</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab852"><code>ok_type</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab853">Rewriting operations on <code>term</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab854">Fundamental operations</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab863">List and occurrence operations</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab872"><code>free</code> and <code>freeset</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab877">Locally nameless operations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Rewriting.html#lab882">Rewriting principles for <code>ok_term</code></a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Examples.SystemF.Contexts.html">Tealeaves.Examples.SystemF.Contexts</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab883">Tactical support</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab884">Structural lemmas for <code>scoped</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab890">Infrastructural lemmas for contexts and well-formedness predicates</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab891">General properties of <code>ok_kind_ctx</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab892">Tactical support for <code>ok_kind_ctx</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab893">General properties of <code>ok_type</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab894">Structural properties of <code>ok_type Δ τ</code> in <code>Δ</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab899">General properties of <code>ok_type_ctx</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab900">Tactical support for <code>ok_type_ctx</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab901">Structural properties in <code>Δ</code> in <code>ok_type_ctx Δ Γ</code>.</a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab905">Structural properties of <code>ok_term Δ Γ t</code> in <code>Δ</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.Contexts.html#lab910">Structural properties of <code>ok_term Δ Γ t</code> in <code>Γ</code></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Examples.SystemF.TypeSoundness.html">Tealeaves.Examples.SystemF.TypeSoundness</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.TypeSoundness.html#lab915">Properties of the typing judgment <code>Δ ; Γ ⊢ t : τ</code></a>
+<ul class="doclist">
+<li><a href="Tealeaves.Examples.SystemF.TypeSoundness.html#lab916">Structural properties <code>Δ ; Γ ⊢ t : τ</code> in <code>Δ</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.TypeSoundness.html#lab921">Properties of <code>Δ ; Γ ⊢ t : τ</code> in <code>Γ</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.TypeSoundness.html#lab927">Properties in τ of <code>(Δ ; Γ ⊢ t : τ</code></a>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.TypeSoundness.html#lab930">Properties in t of <code>(Δ ; Γ ⊢ t : τ</code></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="Tealeaves.Examples.SystemF.TypeSoundness.html#lab937">Progress and preservation</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Examples.STLC+Let.Let1.html">Tealeaves.Examples.STLC+Let.Let1</a></h2>
+<h2><a href="Tealeaves.Examples.STLC+Let.Let2.html">Tealeaves.Examples.STLC+Let.Let2</a></h2>
+<h2><a href="Tealeaves.Classes.Equivalences.Monad.html">Tealeaves.Classes.Equivalences.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Equivalences.Monad.html#lab938">Algebraic operations from Kleisli operation</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Equivalences.Decorated.Functor.html">Tealeaves.Classes.Equivalences.Decorated.Functor</a></h2>
+<h2><a href="Tealeaves.Classes.Equivalences.Decorated.Monad.html">Tealeaves.Classes.Equivalences.Decorated.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Equivalences.Decorated.Monad.html#lab939">Algebraic operations from Kleisli operation</a>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Equivalences.Traversable.Functor.html">Tealeaves.Classes.Equivalences.Traversable.Functor</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Equivalences.Traversable.Functor.html#lab940">Traversable Functors: Kleisli to Algebraic</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Equivalences.Traversable.Functor.html#lab941">Operations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Equivalences.Traversable.Functor.html#lab942">Instances</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Equivalences.Traversable.Monad.html">Tealeaves.Classes.Equivalences.Traversable.Monad</a></h2>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Equivalences.Traversable.Monad.html#lab944">Traversable Monads: Kleisli to Algebraic</a>
+<ul class="doclist">
+<li><a href="Tealeaves.Classes.Equivalences.Traversable.Monad.html#lab945">Operations</a>
+
+</li>
+<li><a href="Tealeaves.Classes.Equivalences.Traversable.Monad.html#lab946">Instances</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="Tealeaves.Classes.Equivalences.DT.Functor.html">Tealeaves.Classes.Equivalences.DT.Functor</a></h2>
+<h2><a href="Tealeaves.Classes.Equivalences.DT.Monad.html">Tealeaves.Classes.Equivalences.DT.Monad</a></h2>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="http://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a>
+</div>
+</div>
+</body>
+
+</html>
