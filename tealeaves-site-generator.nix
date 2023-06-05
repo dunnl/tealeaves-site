@@ -1,10 +1,10 @@
 { mkDerivation, base, data-default, directory, filepath, hakyll
-, hakyll-sass, lib, pandoc, pandoc-types, pkgs
+, hakyll-sass, lib, pandoc, pandoc-types, nix-gitignore
 }:
 mkDerivation {
   pname = "tealeaves-site-hakyll";
   version = "0.1.0.0";
-  src = pkgs.nix-gitignore.gitignoreSourcePure ./.gitignore_nix ./.;
+  src = nix-gitignore.gitignoreSourcePure ./.gitignore_nix ./.;
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [

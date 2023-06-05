@@ -1,0 +1,49 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1685883127,
+        "narHash": "sha256-zPDaPNrAtBnO24rNqjHLINHsqTdRbgWy1c/TL3EdwlM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d4a9ff82fc18723219b60c66fb2ccb0734c460eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "tealeaves": "tealeaves"
+      }
+    },
+    "tealeaves": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1685980464,
+        "narHash": "sha256-xcXsQh24AHo62qydP+ucmeCp81LH2AGEpCyxH6F7xzk=",
+        "owner": "dunnl",
+        "repo": "tealeaves",
+        "rev": "f0543ac75ed6338fd450c32060ead2e8ffe6f4f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dunnl",
+        "ref": "new-flakes",
+        "repo": "tealeaves",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
