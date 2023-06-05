@@ -1,4 +1,4 @@
-{ stdenv, tealeaves, generator, pkgs }:
+{ stdenv, tealeaves, tealeaves-examples, generator, pkgs }:
 
 stdenv.mkDerivation {
     name = "tealeaves-site";
@@ -11,9 +11,10 @@ stdenv.mkDerivation {
       export LANG=en_US.UTF-8
       tealeaves-site-generator build
       mkdir $out
-      cp -r _site/* $out
       mkdir _site/coqdocs/
-      cp -r ${tealeaves.packages.x86_64-linux.default}/share/coq/${pkgs.coq.coq-version}/user-contrib/Tealeaves/html/* _site/coqdocs/
+      cp -r ${tealeaves}/share/coq/${pkgs.coq.coq-version}/user-contrib/Tealeaves/html/* _site/coqdocs/
+      mkdir _site/examples/
+      cp -r ${tealeaves-examples}/* _site/examples/
     '';
     installPhase = ''
       cp -a _site/* $out

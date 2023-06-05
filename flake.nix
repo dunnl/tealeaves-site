@@ -3,8 +3,9 @@
 
   inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
   inputs.tealeaves.url = github:dunnl/tealeaves/new-flakes;
+  inputs.tealeaves.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, tealeaves }:
+  outputs = { self, nixpkgs, tealeaves }@inputs:
     let pkgs = import nixpkgs {
           system = "x86_64-linux";
         };
@@ -19,9 +20,11 @@
             pkgs.cabal2nix
           ];
         };
+        tealeaves = inputs.tealeaves.packages.x86_64-linux.tealeaves;
+        tealeaves-examples = inputs.tealeaves.packages.x86_64-linux.tealeaves-examples;
         site = pkgs.callPackage
           (import ./tealeaves-site.nix) {
-            inherit tealeaves generator;
+            inherit tealeaves tealeaves-examples generator;
           };
     in { packages.x86_64-linux.default = generator;
          packages.x86_64-linux.generator = generator;
