@@ -32,7 +32,7 @@
         };
         site = pkgs.callPackage
           (import ./tealeaves-site.nix) {
-            inherit tealeaves tealeaves-examples generator;
+            inherit generator;
           };
         site-app = {
           type = "app";

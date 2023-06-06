@@ -1,4 +1,4 @@
-{ stdenv, tealeaves, tealeaves-examples, generator, pkgs }:
+{ stdenv, generator, pkgs }:
 
 stdenv.mkDerivation {
     name = "tealeaves-site";
@@ -12,6 +12,7 @@ stdenv.mkDerivation {
       tealeaves-site-generator build
     '';
     installPhase = ''
+      mkdir $out
       cp -a _site/* $out
     '';
     meta = {
